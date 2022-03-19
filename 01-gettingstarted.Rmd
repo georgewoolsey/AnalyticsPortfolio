@@ -1,0 +1,122 @@
+# Introduction {#intro}
+
+This chapter demonstrates some techniques for utilizing R Markdown to compile and share data analyses.
+The *[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)* (Xie, Allaire, & Grolemund 2018) was the primary reference for compiling this chapter and is an excellent resource for continued work in R Markdown.
+
+```{r setup, include=FALSE}
+# load packages
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(dataRetrieval)
+library(dygraphs)
+library(xts)
+# prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Methods
+
+The Poudre River at Lincoln Bridge is:
+
+  - Downstream of only a little bit of urban stormwater
+
+  - Near Odell Brewing CO
+  
+  - Near an open space area and the Poudre River Trail
+  
+  - **Downstream of many agricultral diversions**
+
+## Site Description
+
+![](https://waterdata.usgs.gov/nwisweb/local/state/co/text/pics/06752260big.jpg)
+## Data Acquisition and Plotting tests
+
+## Data Download
+
+```{r downloader, warning=F, message=F, results='hide'}
+
+# pull stream flow data using dataRetrieval package
+q <- readNWISdv(siteNumbers = '06752260',
+                parameterCd = '00060',
+                startDate = '2017-01-01',
+                endDate = '2022-01-01') %>%
+  rename(q = 'X_00060_00003')
+
+```
+
+## Static Data Plotter
+
+```{r, warning = FALSE, fig.width = 8, fig.height = 5}
+# ggplot line chart
+ggplot(q, aes(x = Date, y = q)) + 
+  geom_line() + 
+  ylab('Q (cfs)') + 
+  ggtitle('Discharge in the Poudre River, Fort Collins')
+```
+
+## Interactive Data Plotter
+
+```{r}
+# transform data to xts object
+q_xts <- xts(q$q, order.by = q$Date)
+
+# dygraph to make interactive line chart
+dygraph(q_xts, main = "Discharge in the Poudre River, Fort Collins, CO") %>%
+  dyAxis("y", label = "Discharge (cfs)")
+
+```
+
+# Assignment
+
+1) Fork the example repository into your personal GitHub
+
+2) Create an RStudio project from your Personal clone of the Repo. 
+
+3) Create a table of contents that is floating, but displays three levels of
+headers instead of two (by editing the content at the beginning of the document)
+
+4) Make a version of the `dygraph` with points and lines by using rstudio's
+dygraph [guide](https://rstudio.github.io/dygraphs/)
+
+5) Writing a paragraph on the Poudre river with at least three hyperlinks,
+**two bolded sections**, and one *italicized phrase*. The content of this paragraph
+is not vital, but try to at least make it true and interesting, and, of course,
+don't plagiarize.
+
+6) Knit that document, and then git commit and push to your personal GitHub.
+
+7) Use the GitHub -> Settings -> Pages tab to create a website of your report.
+
+8) Bonus, make the timestamp in the header dynamic. As in it only adds
+todays date, not just a static date you enter. 
+
+9) Bonus, create an "index_talk.Rmd" version of your document using the
+`revealjs` package. Add link to your original report-style document. 
+
+## DyGraph example
+
+### Interact with this chart!
+
+```{r}
+# transform data to xts object
+q_xts <- xts(q$q, order.by = q$Date)
+
+# dygraph to make interactive line chart
+dygraph(q_xts, main = "Discharge in the Poudre River, Fort Collins, CO") %>%
+  dyAxis("y", label = "Discharge (cfs)") %>%
+  dyOptions(drawPoints = TRUE, pointSize = 2)
+
+```
+
+## Poudre River Overview
+
+  The Cache la Poudre River in Larimer County, Colorado is *one of 55 designated [National Heritage Areas](https://www.nps.gov/places/cache-la-poudre-river-national-heritage-area.htm)* in the United States. The river showcases historical developments built by early Euro-American settlers, a popular trail system which follows the river through Fort Collins, and miles of natural beauty which, despite increasing human development, remains prime wildlife habitat. The **Bird Conservancy of the Rockies** has organized a community science project to study Eastern Screech-Owls along the Cache la Poudre River in Fort Collins and is currently [seeking volunteer surveyors](https://www.birdconservancy.org/get-involved/volunteer/citizen-science/) for the period March to mid-May. For those interested in the water flow dynamics of the river, there are several stream gauges maintained by **Colorado Division of Water Resources** with [open access to data](https://dwr.state.co.us/Tools/Stations?Stations=All&submitButton=Submit&SelectedGeoValue=waterDivisionDiv&SelectedWaterDivisionId=1&SelectedStationType=Stream%20Gage&SelectedAdditionalValue=waterSourceDiv&WaterSourceDropdownSearch.WaterSourceName=00205018&WaterSourceDropdownSearch.DbSetNum=37).
+  
+### Map of Poudre River Trail System
+
+![](https://poudreheritage.org/wp-content/uploads/poudremapgeneral-1.jpg)
+
+## Link to presentation-style webpage
+  
+  [Go to presentation](https://georgewoolsey.github.io/1_rmarkdown_examples/index_talk#/)
