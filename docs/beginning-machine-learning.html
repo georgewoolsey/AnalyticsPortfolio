@@ -336,8 +336,16 @@ data goes back to 1984.</p>
 <span id="cb84-19"><a href="beginning-machine-learning.html#cb84-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Sample Site Locations&quot;</span></span>
 <span id="cb84-20"><a href="beginning-machine-learning.html#cb84-20" aria-hidden="true" tabindex="-1"></a>    , <span class="at">subtitle =</span> <span class="st">&quot;grouped locations to minimize spatial autocorrelation in sampling&quot;</span></span>
 <span id="cb84-21"><a href="beginning-machine-learning.html#cb84-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb84-22"><a href="beginning-machine-learning.html#cb84-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
-<span id="cb84-23"><a href="beginning-machine-learning.html#cb84-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb84-22"><a href="beginning-machine-learning.html#cb84-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Longitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb84-23"><a href="beginning-machine-learning.html#cb84-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Latitude&quot;</span>) <span class="sc">+</span></span>
+<span id="cb84-24"><a href="beginning-machine-learning.html#cb84-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb84-25"><a href="beginning-machine-learning.html#cb84-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span> ) <span class="sc">+</span></span>
+<span id="cb84-26"><a href="beginning-machine-learning.html#cb84-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb84-27"><a href="beginning-machine-learning.html#cb84-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb84-28"><a href="beginning-machine-learning.html#cb84-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb84-29"><a href="beginning-machine-learning.html#cb84-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb84-30"><a href="beginning-machine-learning.html#cb84-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb84-31"><a href="beginning-machine-learning.html#cb84-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">col=</span><span class="fu">guide_legend</span>(<span class="st">&quot;Spatial Group&quot;</span>))</span></code></pre></div>
 <p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-78-1.png" width="768" /></p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="beginning-machine-learning.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join to main data</span></span>
 <span id="cb85-2"><a href="beginning-machine-learning.html#cb85-2" aria-hidden="true" tabindex="-1"></a>wq_sr <span class="ot">&lt;-</span> wq_sr <span class="sc">%&gt;%</span> </span>

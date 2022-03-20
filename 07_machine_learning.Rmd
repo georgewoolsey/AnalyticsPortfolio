@@ -76,8 +76,16 @@ ggplot(grp_wq_sr, aes(x=long, y=lat, color=grp)) +
     title = "Sample Site Locations"
     , subtitle = "grouped locations to minimize spatial autocorrelation in sampling"
   ) +
-  theme_few() +
-  scale_color_viridis(discrete = TRUE)
+  xlab("Longitude") +
+  ylab("Latitude") +
+  theme_bw() +
+  scale_color_viridis(discrete = TRUE ) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank()
+  ) +
+  guides(col=guide_legend("Spatial Group"))
 
 ## join to main data
 wq_sr <- wq_sr %>% 
