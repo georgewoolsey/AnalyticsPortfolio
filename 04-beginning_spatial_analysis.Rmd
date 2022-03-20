@@ -141,7 +141,7 @@ ggplot(df, aes(x = st, y = cnt_lakes, fill = st)) +
       title = "Iowa + Illinois Lakes vs. Minnesota Lakes"
     ) +
   xlab("") +
-  ylab("## Lakes") +
+  ylab("# Lakes") +
   scale_fill_viridis(discrete = TRUE, option = "cividis") +
   theme_bw() +
   theme(
@@ -179,7 +179,7 @@ ggplot(mn_ia_lakes, aes(lake_area_ha_log, fill = name)) +
       title = "Distribution of Lake Area in Minnesota and Iowa"
     ) +
   xlab("log10 Lake Area (ha)") +
-  ylab("## Lakes") +
+  ylab("# Lakes") +
   scale_fill_viridis(discrete = TRUE, option = "cividis") +
   theme_bw() +
   theme(

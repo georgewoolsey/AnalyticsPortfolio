@@ -282,6 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="wildfire-recovery" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Wildfire Recovery<a href="wildfire-recovery.html#wildfire-recovery" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This analysis investigates the recovery of vegetation after the 2002 Hayman Fire in Douglas, Jefferson, Park, and Teller counties, Colorado. Vegetation recovery is measured based on Normalized Difference Vegetation Index (NDVI) which is calculated from the visible and near-infrared light reflected by vegetation detected by remotely sensed data. The influences of snow and vegetation moisture content on recovery are examined. The Normalized Difference Snow Index (NDSI) is used as a measure of snow cover and the Normalized Difference Moisture Index (NDMI) is used as a measure of vegetation water content.</p>
 <div id="read-data" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Read Data<a href="wildfire-recovery.html#read-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="wildfire-recovery.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">####-----Reading in Data and Stacking it ----- ####</span></span>
@@ -332,13 +333,15 @@ You should exclude winter months and focus on summer months</p>
 <span id="cb7-11"><a href="wildfire-recovery.html#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;Daily relationship between NDVI and NDMI (summer only)&quot;</span></span>
 <span id="cb7-12"><a href="wildfire-recovery.html#cb7-12" aria-hidden="true" tabindex="-1"></a>      , <span class="at">subtitle =</span> <span class="st">&quot;burned versus unburned area&quot;</span></span>
 <span id="cb7-13"><a href="wildfire-recovery.html#cb7-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="wildfire-recovery.html#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb7-15"><a href="wildfire-recovery.html#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb7-16"><a href="wildfire-recovery.html#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb7-17"><a href="wildfire-recovery.html#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span></span>
-<span id="cb7-18"><a href="wildfire-recovery.html#cb7-18" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span></span>
-<span id="cb7-19"><a href="wildfire-recovery.html#cb7-19" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb7-20"><a href="wildfire-recovery.html#cb7-20" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<span id="cb7-14"><a href="wildfire-recovery.html#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;NDMI&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="wildfire-recovery.html#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;NDVI&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="wildfire-recovery.html#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="wildfire-recovery.html#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-18"><a href="wildfire-recovery.html#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb7-19"><a href="wildfire-recovery.html#cb7-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span></span>
+<span id="cb7-20"><a href="wildfire-recovery.html#cb7-20" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span></span>
+<span id="cb7-21"><a href="wildfire-recovery.html#cb7-21" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb7-22"><a href="wildfire-recovery.html#cb7-22" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
 <p>Based on the chart above, there is a positive correlation between the daily Normalized Difference Moisture Index (NDMI) and vegetation health as measured by NDVI in the summer months (June-October). There is a regime shift in the NDVI values of the burned area between pre-fire (higher NDVI values) and post-fire (lower NDVI values) measurements.</p>
 </div>
@@ -356,13 +359,15 @@ You should exclude winter months and focus on summer months</p>
 <span id="cb8-10"><a href="wildfire-recovery.html#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;Monthly relationship between NDVI and NDMI (summer only)&quot;</span></span>
 <span id="cb8-11"><a href="wildfire-recovery.html#cb8-11" aria-hidden="true" tabindex="-1"></a>      , <span class="at">subtitle =</span> <span class="st">&quot;burned versus unburned area&quot;</span></span>
 <span id="cb8-12"><a href="wildfire-recovery.html#cb8-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="wildfire-recovery.html#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-14"><a href="wildfire-recovery.html#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb8-15"><a href="wildfire-recovery.html#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb8-16"><a href="wildfire-recovery.html#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span></span>
-<span id="cb8-17"><a href="wildfire-recovery.html#cb8-17" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span></span>
-<span id="cb8-18"><a href="wildfire-recovery.html#cb8-18" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb8-19"><a href="wildfire-recovery.html#cb8-19" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<span id="cb8-13"><a href="wildfire-recovery.html#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;NDMI&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="wildfire-recovery.html#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;NDVI&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="wildfire-recovery.html#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="wildfire-recovery.html#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-17"><a href="wildfire-recovery.html#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb8-18"><a href="wildfire-recovery.html#cb8-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span></span>
+<span id="cb8-19"><a href="wildfire-recovery.html#cb8-19" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span></span>
+<span id="cb8-20"><a href="wildfire-recovery.html#cb8-20" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-21"><a href="wildfire-recovery.html#cb8-21" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
 <p>Based on the average NDVI and NDMI values at the monthly level presented above for summer months only (June-October), there is a more clear distinction between burned and unburned areas. The burned area vegetation health (NDVI) responds more positively to changes in moisture (NDMI) compared to the unburned area.</p>
 </div>

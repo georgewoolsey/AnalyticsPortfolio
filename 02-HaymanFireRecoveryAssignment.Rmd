@@ -1,5 +1,7 @@
 # Wildfire Recovery
 
+This analysis investigates the recovery of vegetation after the 2002 Hayman Fire in	Douglas, Jefferson, Park, and Teller counties, Colorado. Vegetation recovery is measured based on Normalized Difference Vegetation Index (NDVI) which is calculated from the visible and near-infrared light reflected by vegetation detected by remotely sensed data. The influences of snow and vegetation moisture content on recovery are examined. The Normalized Difference Snow Index (NDSI) is used as a measure of snow cover and the Normalized Difference Moisture Index (NDMI) is used as a measure of vegetation water content.
+
 ```{r, include=FALSE}
 library(tidyverse)
 library(tidyr)
@@ -68,6 +70,8 @@ full_wide %>%
       title = "Daily relationship between NDVI and NDMI (summer only)"
       , subtitle = "burned versus unburned area"
     ) +
+    xlab("NDMI") +
+    ylab("NDVI") +
     scale_color_brewer(palette = "Dark2") +
     theme_bw() +
     theme(
@@ -96,6 +100,8 @@ full_wide %>%
       title = "Monthly relationship between NDVI and NDMI (summer only)"
       , subtitle = "burned versus unburned area"
     ) +
+    xlab("NDMI") +
+    ylab("NDVI") +
     scale_color_brewer(palette = "Dark2") +
     theme_bw() +
     theme(

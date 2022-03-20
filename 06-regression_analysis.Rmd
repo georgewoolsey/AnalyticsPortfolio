@@ -39,7 +39,7 @@ prism <- readMat("data/prismiowa.mat")
 ## look at county #1
 t_1981_c1 <- prism$tmaxdaily.iowa[1,,1]
 t_1981_c1[366]
-plot(1:366, t_1981_c1, type = "l")
+# plot(1:366, t_1981_c1, type = "l", xlab="day of year", ylab="daily maximum temperature (°C)", main="Daily Maximum Temperature, Iowa County #1")
 
 ## plot temp by DOY
 ggplot() +
@@ -85,7 +85,7 @@ winnesummer <- tmaxdf %>%
 ggplot(winnesummer, mapping = aes(x = year, y = meantmax)) +
   geom_point() +
   theme_bw() +
-  labs(x = "year", y = "Tmax (°C)") +
+  labs(x = "Year", y = "Tmax (°C)") +
   geom_smooth(method = lm)
 ## simple linear regression of summer temp on year
 lm_summertmax <- lm(meantmax ~ year, winnesummer)
@@ -105,7 +105,7 @@ winnewinter <- tmaxdf %>%
 ggplot(winnewinter, mapping = aes(x = year, y = meantmax)) +
   geom_point() +
   theme_bw() +
-  labs(x = "year", y = "Tmax (°C)") +
+  labs(x = "Year", y = "Tmax (°C)") +
   geom_smooth(method = lm)
 ## simple linear regression of winter temp on year
 lm_wintertmax <- lm(meantmax ~ year, winnewinter)
@@ -128,7 +128,7 @@ ggplot(winnewinter) +
   geom_point(mapping = aes(x = year, y = meantmax)) +
   geom_line(mapping = aes(x = year, y = fitted)) +
   theme_bw() +
-  labs(x = "year", y = "tmax")
+  labs(x = "Year", y = "Tmax (°C)")
 
 ```
 

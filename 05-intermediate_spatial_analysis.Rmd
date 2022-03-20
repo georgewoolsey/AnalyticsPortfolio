@@ -244,7 +244,7 @@ ggplot(state_lake_clarity, aes(x=count_clarity_measurements, y = reorder(state_n
       , subtitle = "only observations with both Secchi and Chlorophyll measurements included"
     ) +
   ylab("") +
-  xlab("## Clarity Measurements") +
+  xlab("# Clarity Measurements") +
   scale_fill_viridis(option = "viridis", direction = -1) +
   theme_bw() +
   theme(
@@ -270,7 +270,7 @@ ggplot(state_lake_clarity, aes(x=count_lakes_w_data, y = reorder(state_name, cou
       , subtitle = "only observations with both Secchi and Chlorophyll measurements included"
     ) +
   ylab("") +
-  xlab("## Lakes w/ Clarity Measurements") +
+  xlab("# Lakes w/ Clarity Measurements") +
   scale_fill_viridis(option = "cividis", direction = -1) +
   theme_bw() +
   theme(
