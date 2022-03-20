@@ -115,5 +115,6 @@ chl-a-error-metrics
 tss-model
 tss-plot
 tss-evaluation
-q1
-q2
+assignment-6
+section
+section-1
