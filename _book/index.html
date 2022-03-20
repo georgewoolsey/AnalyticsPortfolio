@@ -23,7 +23,7 @@
 <meta name="author" content="George Woolsey" />
 
 
-<meta name="date" content="2022-03-18" />
+<meta name="date" content="2022-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-
+<link rel="next" href="intro.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,29 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -132,7 +155,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="#prerequisites"><i class="fa fa-check"></i><b>1</b> Prerequisites<span></span></a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#this-book"><i class="fa fa-check"></i><b>1.1</b> This book<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Using R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#methods"><i class="fa fa-check"></i><b>2.1</b> Methods<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#site-description"><i class="fa fa-check"></i><b>2.1.1</b> Site Description<span></span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#data-download"><i class="fa fa-check"></i><b>2.1.2</b> Data Download<span></span></a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#static-data-plotter"><i class="fa fa-check"></i><b>2.1.3</b> Static Data Plotter<span></span></a></li>
+<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#interactive-data-plotter"><i class="fa fa-check"></i><b>2.1.4</b> Interactive Data Plotter<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#assignment"><i class="fa fa-check"></i><b>2.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#dygraph-example"><i class="fa fa-check"></i><b>2.2.1</b> DyGraph example<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#poudre-river-overview"><i class="fa fa-check"></i><b>2.2.2</b> Poudre River Overview<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="intro.html"><a href="intro.html#link-to-presentation-style-webpage"><i class="fa fa-check"></i><b>2.2.3</b> Link to presentation-style webpage<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html"><i class="fa fa-check"></i><b>3</b> Wildfire Recovery<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#read-data"><i class="fa fa-check"></i><b>3.1</b> Read Data<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#assignment-1"><i class="fa fa-check"></i><b>3.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-1"><i class="fa fa-check"></i><b>3.2.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-2"><i class="fa fa-check"></i><b>3.2.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-3"><i class="fa fa-check"></i><b>3.2.3</b> Question 3)<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-4"><i class="fa fa-check"></i><b>3.2.4</b> Question 4)<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-5"><i class="fa fa-check"></i><b>3.2.5</b> Question 5)<span></span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#bonus-question-1"><i class="fa fa-check"></i><b>3.2.6</b> Bonus Question 1)<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html"><i class="fa fa-check"></i><b>4</b> Web Scraping and Functions<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#simple-web-scraping"><i class="fa fa-check"></i><b>4.1</b> Simple web scraping<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#reading-an-html"><i class="fa fa-check"></i><b>4.1.1</b> Reading an html<span></span></a></li>
+<li class="chapter" data-level="4.1.2" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#data-download-1"><i class="fa fa-check"></i><b>4.1.2</b> Data Download<span></span></a></li>
+<li class="chapter" data-level="4.1.3" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#data-read-in"><i class="fa fa-check"></i><b>4.1.3</b> Data read-in<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#assignment-2"><i class="fa fa-check"></i><b>4.2</b> Assignment:<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-1-1"><i class="fa fa-check"></i><b>4.2.1</b> Question 1<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-2-1"><i class="fa fa-check"></i><b>4.2.2</b> Question 2<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-3-1"><i class="fa fa-check"></i><b>4.2.3</b> Question 3<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-4-1"><i class="fa fa-check"></i><b>4.2.4</b> Question 4<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-5-1"><i class="fa fa-check"></i><b>4.2.5</b> Question 5<span></span></a></li>
+<li class="chapter" data-level="4.2.6" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-6"><i class="fa fa-check"></i><b>4.2.6</b> Question 6<span></span></a></li>
+<li class="chapter" data-level="4.2.7" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#bonus-question-1-1"><i class="fa fa-check"></i><b>4.2.7</b> Bonus Question 1<span></span></a></li>
+<li class="chapter" data-level="4.2.8" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#bonus-question-2"><i class="fa fa-check"></i><b>4.2.8</b> Bonus Question 2<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sp1.html"><a href="sp1.html"><i class="fa fa-check"></i><b>5</b> Spatial Analysis (part 1)<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sp1.html"><a href="sp1.html#lagos-analysis"><i class="fa fa-check"></i><b>5.1</b> LAGOS Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="sp1.html"><a href="sp1.html#loading-in-data"><i class="fa fa-check"></i><b>5.1.1</b> Loading in data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="sp1.html"><a href="sp1.html#assignment-3"><i class="fa fa-check"></i><b>5.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="sp1.html"><a href="sp1.html#question-1-2"><i class="fa fa-check"></i><b>5.2.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="sp1.html"><a href="sp1.html#question-2-2"><i class="fa fa-check"></i><b>5.2.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="sp1.html"><a href="sp1.html#question-3-2"><i class="fa fa-check"></i><b>5.2.3</b> Question 3)<span></span></a></li>
+<li class="chapter" data-level="5.2.4" data-path="sp1.html"><a href="sp1.html#question-4-2"><i class="fa fa-check"></i><b>5.2.4</b> Question 4)<span></span></a></li>
+<li class="chapter" data-level="5.2.5" data-path="sp1.html"><a href="sp1.html#question-5-2"><i class="fa fa-check"></i><b>5.2.5</b> Question 5)<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sp2.html"><a href="sp2.html"><i class="fa fa-check"></i><b>6</b> Spatial Analysis (part 2)<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sp2.html"><a href="sp2.html#lagos-analysis-1"><i class="fa fa-check"></i><b>6.1</b> LAGOS Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="sp2.html"><a href="sp2.html#loading-in-data-1"><i class="fa fa-check"></i><b>6.1.1</b> Loading in data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="sp2.html"><a href="sp2.html#assignment-4"><i class="fa fa-check"></i><b>6.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sp2.html"><a href="sp2.html#question-1-3"><i class="fa fa-check"></i><b>6.2.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="sp2.html"><a href="sp2.html#question-2-3"><i class="fa fa-check"></i><b>6.2.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="sp2.html"><a href="sp2.html#question-3-3"><i class="fa fa-check"></i><b>6.2.3</b> Question 3)<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>7</b> Regression Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="regression-analysis.html"><a href="regression-analysis.html#weather-data-analysis"><i class="fa fa-check"></i><b>7.0.1</b> Weather Data Analysis<span></span></a></li>
+<li class="chapter" data-level="7.0.2" data-path="regression-analysis.html"><a href="regression-analysis.html#temperature-trends"><i class="fa fa-check"></i><b>7.0.2</b> Temperature trends<span></span></a></li>
+<li class="chapter" data-level="7.0.3" data-path="regression-analysis.html"><a href="regression-analysis.html#assignment-5"><i class="fa fa-check"></i><b>7.0.3</b> Assignment<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html"><i class="fa fa-check"></i><b>8</b> Beginning Machine Learning<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#objective"><i class="fa fa-check"></i><b>8.1</b> Objective<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#data-read"><i class="fa fa-check"></i><b>8.1.1</b> Data read<span></span></a></li>
+<li class="chapter" data-level="8.1.2" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#spatial-autocorrelation-grouping"><i class="fa fa-check"></i><b>8.1.2</b> Spatial autocorrelation grouping<span></span></a></li>
+<li class="chapter" data-level="8.1.3" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#model-development"><i class="fa fa-check"></i><b>8.1.3</b> Model development<span></span></a></li>
+<li class="chapter" data-level="8.1.4" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#chl-a-model"><i class="fa fa-check"></i><b>8.1.4</b> Chl-a model<span></span></a></li>
+<li class="chapter" data-level="8.1.5" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#tss-model"><i class="fa fa-check"></i><b>8.1.5</b> TSS Model<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#q1"><i class="fa fa-check"></i><b>8.2</b> Q1)<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#q2"><i class="fa fa-check"></i><b>8.3</b> Q2)<span></span></a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -153,18 +275,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Analytics Portfolio</h1>
 <p class="author"><em>George Woolsey</em></p>
-<p class="date"><em>2022-03-18</em></p>
+<p class="date"><em>2022-03-20</em></p>
 </div>
-<div id="prerequisites" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Prerequisites<a href="#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>My name is George Woolsey and I am currently pursuing on a MS in Forest Sciences at Colorado State University. I am working with Dr. Wade Tinkham in the <a href="https://sites.warnercnr.colostate.edu/wtinkham/">Forest Biometrics Lab</a>. Our lab utilizes a combination of field inventories, remote sensing, GIS, and forest growth/landscape change models to characterize and address a wide array of applied forest management questions.</p>
+<div id="this-book" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> This book<a href="index.html#this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This book of selected analytics projects was compiled using <strong>R Markdown</strong> and the <strong>bookdown</strong> package which can be installed from CRAN or Github (code block below). The majority of these projects were completed as part of the Environmental Data Science course in the spring of 2022.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or the development version</span></span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
 
+</div>
 </div>
             </section>
 
@@ -172,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -226,20 +349,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

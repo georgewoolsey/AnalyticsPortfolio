@@ -1,59 +1,47 @@
----
-title: "Weather and Corn Yield Regressions"
-author: "Nathan Mueller | Assignment completed by: George Woolsey"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
-    # code_folding: hide
-editor_options: 
-  chunk_output_type: console
-knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = file.path(dirname(inputFile), 'index.html')) })
----
+# Regression Analysis
 
-```{r setup, include=FALSE, warning=F, message=F}
+This analysis utilizes the [The National Agricultural Statistics Service (NASS) Quick Stats](https://quickstats.nass.usda.gov/api) data from an on-line database containing official published aggregate estimates related to U.S. agricultural production.
+
+```{r, include=FALSE, warning=F, message=F}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
 library(viridis)
 library(RColorBrewer)
 library(scales)
-####### read data req. for this assignment
+######## read data req. for this assignment
 library(R.matlab)
 library(rnassqs)
-####### spatial data
+######## spatial data
 library(USAboundariesData)
 library(USAboundaries)
 library(sf)
 library(mapview) #Interactive maps
 library(leafpop) #map html popup
-# regression plots
-# library(car)
-# library(gplots)
-
+## regression plots
+## library(car)
+## library(gplots)
 
 #define vars
 my_qs_api_key <- "1E804485-6B71-3E4A-B74E-2340256BC471"
 filter <- dplyr::filter
-
 ```
 
-## Weather Data Analysis
+### Weather Data Analysis
 
-### Load the PRISM daily maximum temperatures
+#### Load the PRISM daily maximum temperatures
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-
-# daily max temperature
-# dimensions: counties x days x years
+## daily max temperature
+## dimensions: counties x days x years
 prism <- readMat("data/prismiowa.mat")
 
-# look at county #1
+## look at county #1
 t_1981_c1 <- prism$tmaxdaily.iowa[1,,1]
 t_1981_c1[366]
 plot(1:366, t_1981_c1, type = "l")
 
+## plot temp by DOY
 ggplot() +
   geom_line(mapping = aes(x=1:366, y = t_1981_c1)) +
   theme_bw() +
@@ -64,77 +52,78 @@ ggplot() +
 
 ```
 
-### tidy weather data
+#### tidy weather data
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
 
-# assign dimension names to tmax matrix
+## assign dimension names to tmax matrix
 dimnames(prism$tmaxdaily.iowa) <- list(prism$COUNTYFP, 1:366, prism$years)
 
-# converted 3d matrix into a data frame
+## converted 3d matrix into a data frame
 tmaxdf <- as.data.frame.table(prism$tmaxdaily.iowa)
 
-# relabel the columns
+## relabel the columns
 colnames(tmaxdf) <- c("countyfp","doy","year","tmax")
 tmaxdf <- tibble(tmaxdf)
 
 ```
 
-## Temperature trends
+### Temperature trends
 
-### Summer temperature trends: Winneshiek County
+#### Summer temperature trends: Winneshiek County
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-
+## transform data types
 tmaxdf$doy <- as.numeric(tmaxdf$doy)
 tmaxdf$year <- as.numeric(as.character(tmaxdf$year))
-
+## summarize summer temperature by year
 winnesummer <- tmaxdf %>%
   filter(countyfp==191 & doy >= 152 & doy <= 243) %>%
   group_by(year) %>%
   summarize(meantmax = mean(tmax))
-
+## plot temp by year
 ggplot(winnesummer, mapping = aes(x = year, y = meantmax)) +
   geom_point() +
   theme_bw() +
   labs(x = "year", y = "Tmax (°C)") +
   geom_smooth(method = lm)
-
+## simple linear regression of summer temp on year
 lm_summertmax <- lm(meantmax ~ year, winnesummer)
 summary(lm_summertmax)
 
 ```
 
-### Winter Temperatures - Winneshiek County
+#### Winter Temperatures - Winneshiek County
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-
+## summarize winter temperature data by year
 winnewinter <- tmaxdf %>%
   filter(countyfp==191 & (doy <= 59 | doy >= 335) & !is.na(tmax)) %>%
   group_by(year) %>%
   summarize(meantmax = mean(tmax))
-
+## plot yearly winter temperature
 ggplot(winnewinter, mapping = aes(x = year, y = meantmax)) +
   geom_point() +
   theme_bw() +
   labs(x = "year", y = "Tmax (°C)") +
   geom_smooth(method = lm)
-
+## simple linear regression of winter temp on year
 lm_wintertmax <- lm(meantmax ~ year, winnewinter)
 summary(lm_wintertmax)
 
 ```
 
-### Multiple regression -- Quadratic time trend
+#### Multiple regression -- Quadratic time trend
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-
+## create squared term of year
 winnewinter$yearsq <- winnewinter$year^2
-
+## quadratic regreassion of winter temp on year and year2
 lm_wintertmaxquad <- lm(meantmax ~ year + yearsq, winnewinter)
 summary(lm_wintertmaxquad)
+## save fitted values
 winnewinter$fitted <- lm_wintertmaxquad$fitted.values
-
+## plot fitted values
 ggplot(winnewinter) +
   geom_point(mapping = aes(x = year, y = meantmax)) +
   geom_line(mapping = aes(x = year, y = fitted)) +
@@ -143,55 +132,56 @@ ggplot(winnewinter) +
 
 ```
 
-### Download NASS corn yield data
+#### Download NASS corn yield data
+
+The **rnassqs** package requires a unique access key which can be obtained [here](https://quickstats.nass.usda.gov/api). After acquiring this key, define it in your code session as the variable `my_qs_api_key`. 
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-
-# set our API key with NASS
+## set our API key with NASS
 nassqs_auth(key = my_qs_api_key)
 
-# parameters to query on 
+## parameters to query on 
 params <- list(commodity_desc = "CORN", util_practice_desc = "GRAIN", prodn_practice_desc = "ALL PRODUCTION PRACTICES", year__GE = 1981, state_alpha = "IA")
 
-# download
+## download
 cornyieldsall <- nassqs_yields(params)
 
 cornyieldsall$county_ansi <- as.numeric(cornyieldsall$county_ansi)
 cornyieldsall$yield <- as.numeric(cornyieldsall$Value)
 
-# clean and filter this dataset
+## clean and filter this dataset
 cornyields <- select(cornyieldsall, county_ansi, county_name, yield, year) %>%
   filter(!is.na(county_ansi) & !is.na(yield))
 cornyields <- tibble(cornyields) %>% 
   rename(year_id = year
-         , yield_corn_bu_acre = yield # bushels per acre
+         , yield_corn_bu_acre = yield ## bushels per acre
     )
 
 ```
 
-## Assignment
+### Assignment
 
-### Question 1a
+#### Question 1a
 Extract Winneshiek County corn yields, fit a linear time trend, make a plot. Is there a significant time trend?
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# # check out yield data structure
-# str(cornyields)
-# nrow(cornyields)
-# cornyields %>% distinct(county_ansi) %>% nrow(.)
-# cornyields %>% distinct(county_ansi, year_id) %>% nrow(.)
-# # row is unique by county, year
+## ## check out yield data structure
+## str(cornyields)
+## nrow(cornyields)
+## cornyields %>% distinct(county_ansi) %>% nrow(.)
+## cornyields %>% distinct(county_ansi, year_id) %>% nrow(.)
+## ## row is unique by county, year
 
-# filter to specific county
+## filter to specific county
 winneshiek_yields <- cornyields %>% 
   filter(toupper(county_name) == "WINNESHIEK")
 
-# trend model for yield growth
+## trend model for yield growth
 lm_yield_year <- lm(yield_corn_bu_acre ~ year_id , data = winneshiek_yields)
 
 summary(lm_yield_year)$coefficients["(Intercept)", "Estimate"]
 
-# label model in ggplot
+## label model in ggplot
 model_label <- as.character(as.expression(
   substitute(
     italic(y) == a + b %.% italic(year)*","~~italic(r)^2~"="~r2
@@ -202,9 +192,9 @@ model_label <- as.character(as.expression(
       )
   )
 ))
-# model_label
+## model_label
 
-# plot
+## plot
 ggplot(winneshiek_yields, aes(x = year_id, y = yield_corn_bu_acre)) +
   geom_point(alpha=0.8, color = "navy", size = 2) + 
   geom_smooth(method = 'lm', color = "grey35") +
@@ -223,25 +213,25 @@ ggplot(winneshiek_yields, aes(x = year_id, y = yield_corn_bu_acre)) +
 
 <span style="color: blue;">There is a significant time trend in the corn yields in  Winneshiek County, Iowa from `r as.character(min(winneshiek_yields$year_id))` to `r as.character(max(winneshiek_yields$year_id))`. Based on a simple linear regression, every additional year results in the corn yield increasing by **`r round(summary(lm_yield_year)$coefficients[2, "Estimate"], 2)` bu/acre**. The annual time trend explains **`r scales::percent(summary(lm_yield_year)$r.squared)`** of the variation in corn yields in  Winneshiek County, Iowa.</span>
 
-### Question 1b
+#### Question 1b
 Fit a quadratic time trend (i.e., year + year^2) and make a plot. Is there evidence for slowing yield growth? 
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# quadratic trend model for evidence of slowing yield growth
+## quadratic trend model for evidence of slowing yield growth
 winneshiek_yields <- winneshiek_yields %>% 
   mutate(year_id_sq = year_id^2)
 
-# run model
+## run model
 lm_yield_year_quad <- lm(yield_corn_bu_acre ~ year_id + year_id_sq, data = winneshiek_yields)
-# summary(lm_yield_year_quad)
-# save fitted values
+## summary(lm_yield_year_quad)
+## save fitted values
 winneshiek_yields$fitted_quad <- lm_yield_year_quad$fitted.values
 
-# compare models
+## compare models
 anova_m1_m2 <- anova(lm_yield_year, lm_yield_year_quad)
-# anova_m1_m2[2, "Pr(>F)"]
+## anova_m1_m2[2, "Pr(>F)"]
 
-# label model in ggplot
+## label model in ggplot
 model_label_quad <- as.character(as.expression(
   substitute(
     italic(y) == a + b %.% italic(year) + c %.% ~italic(year)^2~","~~italic(r)^2~"="~r2
@@ -253,9 +243,9 @@ model_label_quad <- as.character(as.expression(
       )
   )
 ))
-# model_label_quad
+## model_label_quad
 
-# plot
+## plot
 ggplot(winneshiek_yields, aes(x = year_id, y = yield_corn_bu_acre)) +
   geom_point(alpha=0.8, color = "navy", size = 2) +
   geom_line(aes(x = year_id, y = fitted_quad), color = "grey35") +
@@ -277,24 +267,24 @@ ggplot(winneshiek_yields, aes(x = year_id, y = yield_corn_bu_acre)) +
 <span style="color: blue;">Using a quadratic time trend (i.e., year + year^2) shows a significant time trend in the corn yields in  Winneshiek County, Iowa from `r as.character(min(winneshiek_yields$year_id))` to `r as.character(max(winneshiek_yields$year_id))`. Based on a the quadratic model, there is a slightly *increasing* rate of corn yield over time. The quadratic time trend explains **`r scales::percent(summary(lm_yield_year_quad)$r.squared)`** of the variation in corn yields in  Winneshiek County, Iowa. Using the `anova()` function to compare the quadratic model with the simple linear model allows for us to test which model provides the best parsimonious fit of the data. Although the quadratic model is significant, the ANOVA test has a resulting p-value of **`r round(anova_m1_m2[2, "Pr(>F)"], 3)`**. This result means that adding the quadratic term did not significantly improve the model over the simple linear model.</span>
 
 
-### Question 2
+#### Question 2
 Time Series: Let's analyze the relationship between temperature and yields for the Winneshiek County time series. Use data on yield and summer avg Tmax. Is adding year or Tmax^2 to your model helpful? Make a plot and interpret the results.
 
-#### Yields on Temperature
+##### Yields on Temperature
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
 #join summer temperature to yield data for Winneshiek County
 winneshiek_yields_temp <- inner_join(winneshiek_yields, winnesummer, by = c("year_id"= "year"))
 
-# yield on temperature
+## yield on temperature
 lm_yield_tmax <- lm(yield_corn_bu_acre ~ meantmax, data = winneshiek_yields_temp)
 lm_yield_yr <- lm(yield_corn_bu_acre ~ year_id, data = winneshiek_yields_temp)
-# summary(lm_yield_tmax)
+## summary(lm_yield_tmax)
 
-# compare models
+## compare models
 anova_m1_m3 <- anova(lm_yield_yr, lm_yield_tmax)
 
-## plot
+### plot
 ggplot(winneshiek_yields_temp, aes(x = meantmax, y = yield_corn_bu_acre)) +
   geom_point(alpha=0.8, color = "navy", size = 2) + 
   geom_smooth(method = 'lm', color = "grey35") +
@@ -312,18 +302,18 @@ ggplot(winneshiek_yields_temp, aes(x = meantmax, y = yield_corn_bu_acre)) +
 
 <span style="color: blue;">A simple linear regression of corn yield on mean summer maximum temperature shows that temperature alone explains **`r scales::percent(summary(lm_yield_tmax)$r.squared)`** of the variation in corn yields in  Winneshiek County, Iowa. This model performs worse than the simple time trend of annual corn yield investigated above.</span>
 
-#### Yields on Year & Temperature
+##### Yields on Year & Temperature
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# yield on temperature and year
+## yield on temperature and year
 lm_yield_year_tmax <- lm(yield_corn_bu_acre ~ year_id + meantmax, data = winneshiek_yields_temp)
-# summary(lm_yield_year_tmax)
+## summary(lm_yield_year_tmax)
 
-# compare models
+## compare models
 anova_m1_m4 <- anova(lm_yield_yr, lm_yield_year_tmax)
 anova_m1_m4
 
-# linear function holding tmax constant at mean
+## linear function holding tmax constant at mean
 lm_yield_year_tmax_eq1 <- function(x){summary(lm_yield_year_tmax)$coefficients["(Intercept)", "Estimate"] + (summary(lm_yield_year_tmax)$coefficients[2, "Estimate"] * x) + (summary(lm_yield_year_tmax)$coefficients[3, "Estimate"] * mean(winneshiek_yields_temp$meantmax))}
 
 #label
@@ -364,21 +354,21 @@ ggplot(winneshiek_yields_temp, aes(x = year_id, y = yield_corn_bu_acre)) +
 
 <span style="color: blue;">A multiple linear regression of corn yield on year and mean summer maximum temperature explains **`r scales::percent(summary(lm_yield_year_tmax)$r.squared)`** of the variation in corn yields in  Winneshiek County, Iowa. Using the `anova()` function to compare the model including year and temperature with the simple linear model including only year allows for us to test which model provides the best parsimonious fit of the data. The ANOVA test has a resulting p-value of **`r round(anova_m1_m4[2, "Pr(>F)"], 3)`**. This result means that adding the mean summer maximum temperature did not significantly improve the model over the simple linear model on year alone.</span>
 
-#### Yields on Year & Temperature quadratic
+##### Yields on Year & Temperature quadratic
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# yield on temperature quadratic and year
+## yield on temperature quadratic and year
 winneshiek_yields_temp <- winneshiek_yields_temp %>% 
   mutate(meantmax_sq = meantmax^2)
 
 lm_yield_year_tmax_sq <- lm(yield_corn_bu_acre ~ year_id + meantmax + meantmax_sq, data = winneshiek_yields_temp)
-# summary(lm_yield_year_tmax_sq)
+## summary(lm_yield_year_tmax_sq)
 
-# compare models
+## compare models
 anova_m1_m5 <- anova(lm_yield_yr, lm_yield_year_tmax_sq)
 anova_m1_m5
 
-# linear function holding tmax constant at mean
+## linear function holding tmax constant at mean
 lm_yield_year_tmax_sq_eq1 <- function(x){summary(lm_yield_year_tmax_sq)$coefficients["(Intercept)", "Estimate"] + (summary(lm_yield_year_tmax_sq)$coefficients[2, "Estimate"] * x) + (summary(lm_yield_year_tmax_sq)$coefficients[3, "Estimate"] * mean(winneshiek_yields_temp$meantmax))  + (summary(lm_yield_year_tmax_sq)$coefficients[4, "Estimate"] * mean(winneshiek_yields_temp$meantmax)^2)}
 
 #label
@@ -420,11 +410,11 @@ ggplot(winneshiek_yields_temp, aes(x = year_id, y = yield_corn_bu_acre)) +
 
 <span style="color: blue;">A multiple linear regression of corn yield on year and mean summer maximum temperature explains **`r scales::percent(summary(lm_yield_year_tmax_sq)$r.squared)`** of the variation in corn yields in  Winneshiek County, Iowa. Using the `anova()` function to compare the model including year and temperature with the simple linear model including only year allows for us to test which model provides the best parsimonious fit of the data. The ANOVA test has a resulting p-value of **`r as.character(round(anova_m1_m5[2, "Pr(>F)"], 5))`**. This result means that adding the mean summer maximum temperature with a squared term did significantly improve the model over the simple linear model on year alone. Thus, of all of the models tested to estimate corn yields in  Winneshiek County, Iowa, this model provides the best parsimonious fit of the data.</span>
 
-### Question 3
+#### Question 3
 Cross-Section: Analyze the relationship between temperature and yield across all counties in 2018. Is there a relationship? Interpret the results.
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# summarize summer temperature data to county, year level
+## summarize summer temperature data to county, year level
 county_year_tmax <- tmaxdf %>%
   mutate(county_ansi = as.numeric(as.character(countyfp))) %>% 
   filter(doy >= 152 & doy <= 243) %>%
@@ -432,20 +422,20 @@ county_year_tmax <- tmaxdf %>%
   summarize(meantmax = mean(tmax, na.rm = TRUE)) %>% 
   mutate(meantmax_sq = meantmax^2)
 
-# join temp and yield data
+## join temp and yield data
 county_yr_full <- inner_join(cornyields, county_year_tmax, by = c("county_ansi" = "county_ansi", "year_id" = "year"))
-# lost a few records without matching temperature data
-# nrow(cornyields) - nrow(county_yr_full)
+## lost a few records without matching temperature data
+## nrow(cornyields) - nrow(county_yr_full)
 
 county_yr_2018 <- county_yr_full %>% 
   filter(year_id==2018)
 
-# models
+## models
 lm_yield_tmax_2018 <- lm(yield_corn_bu_acre ~ meantmax, data = county_yr_2018)
 lm_yield_tmax_sq_2018 <- lm(yield_corn_bu_acre ~ meantmax + meantmax_sq, data = county_yr_2018)
-# summary(lm_yield_tmax_2018)
+## summary(lm_yield_tmax_2018)
 
-# compare models
+## compare models
 anova_1_2 <- anova(lm_yield_tmax_2018, lm_yield_tmax_sq_2018)
 anova_1_2
 ```
@@ -453,7 +443,7 @@ anova_1_2
 <span style="color: blue;">A simple linear regression of corn yield on mean summer maximum temperature for the counties in Iowa in 2018 explains **`r scales::percent(summary(lm_yield_tmax_2018)$r.squared)`** of the variation in corn yields. Adding a squared term for mean summer maximum temperature results in explaining **`r scales::percent(summary(lm_yield_tmax_sq_2018)$r.squared)`** of the variation in corn yields for the counties in Iowa in 2018. We can also use the `anova()` function to compare the simple linear model to the quadratic model to test which model provides the best parsimonious fit of the data. The ANOVA test has a resulting p-value of **`r as.character(round(anova_1_2[2, "Pr(>F)"], 5))`**. This result means that adding the squared term for mean summer maximum temperature did significantly improve the model over the simple linear model. Thus, we will proceed with the quadratic model.</span>
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# save fitted values
+## save fitted values
 county_yr_2018$fitted_quad <- lm_yield_tmax_sq_2018$fitted.values
 
 #label
@@ -492,52 +482,52 @@ ggplot(county_yr_2018, aes(x = meantmax, y = yield_corn_bu_acre)) +
 
 <span style="color: blue;">The model of corn yield on mean summer maximum temperature and its squared term for the counties in Iowa in 2018 explains **`r scales::percent(summary(lm_yield_tmax_sq_2018)$r.squared)`** of the variation in corn yields. The trend shown above estimates a positive impact of temperature on corn yield with a maximum impact around 28 °C. After this point, increasing temperatures negatively impacts corn yields based on 2018 data for the counties in Iowa.</span>
 
-### Question 4
+#### Question 4
 Panel: One way to leverage multiple time series is to group all data into what is called a "panel" regression. Convert the county ID code ("countyfp" or "county_ansi") into factor using as.factor, then include this variable in a regression using all counties' yield and summer temperature data. How does the significance of your temperature coefficients (Tmax, Tmax^2) change? Make a plot comparing actual and fitted yields and interpret the results of your model.
 
-#### Develop models
+##### Develop models
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# make a factor of county code
+## make a factor of county code
 county_yr_full <- county_yr_full %>% 
   mutate(
     name_ansi = paste0(county_name, " (", as.character(county_ansi), ")")
     , county_factor = as.factor(name_ansi)
   )
 
-# explore panel data
-# coplot(yield_corn_bu_acre ~ year_id|county_factor, type="l", data=county_yr_full) # Lines
-# car::scatterplot(yield_corn_bu_acre~year_id|county_factor, data=county_yr_full, boxplots=FALSE, smooth=TRUE, reg.line=FALSE, legend=FALSE)
-# gplots::plotmeans(yield_corn_bu_acre ~ county_factor, main="Heterogeineity across counties", data=county_yr_full, n.label=FALSE)
-# gplots::plotmeans(yield_corn_bu_acre ~ year_id, main="Heterogeineity across years", data=county_yr_full, n.label=FALSE)
+## explore panel data
+## coplot(yield_corn_bu_acre ~ year_id|county_factor, type="l", data=county_yr_full) ## Lines
+## car::scatterplot(yield_corn_bu_acre~year_id|county_factor, data=county_yr_full, boxplots=FALSE, smooth=TRUE, reg.line=FALSE, legend=FALSE)
+## gplots::plotmeans(yield_corn_bu_acre ~ county_factor, main="Heterogeineity across counties", data=county_yr_full, n.label=FALSE)
+## gplots::plotmeans(yield_corn_bu_acre ~ year_id, main="Heterogeineity across years", data=county_yr_full, n.label=FALSE)
 
-# model yield with panel data
-# Regular OLS regression does not consider heterogeneity across groups or time
-# need to add a factor to account for differences across groups
-# yield on year
+## model yield with panel data
+## Regular OLS regression does not consider heterogeneity across groups or time
+## need to add a factor to account for differences across groups
+## yield on year
 lm_pnl_yield_year <- lm(yield_corn_bu_acre ~ year_id + county_factor, data = county_yr_full)
-# summary(lm_pnl_yield_year)
+## summary(lm_pnl_yield_year)
 
-# yield on tmax
+## yield on tmax
 lm_pnl_yield_tmax <- lm(yield_corn_bu_acre ~ meantmax + county_factor, data = county_yr_full)
-# summary(lm_pnl_yield_tmax)
-# anova test
+## summary(lm_pnl_yield_tmax)
+## anova test
 anv_m1_m2 <- anova(lm_pnl_yield_year, lm_pnl_yield_tmax)
-# anv_m1_m2
-# (anv_m1_m2[2, "Sum of Sq"]) # decrease in RSS means that model fits worse
+## anv_m1_m2
+## (anv_m1_m2[2, "Sum of Sq"]) ## decrease in RSS means that model fits worse
 
-# yield on tmax quadratic
+## yield on tmax quadratic
 lm_pnl_yield_tmax_quad <- lm(yield_corn_bu_acre ~ meantmax + meantmax_sq + county_factor, data = county_yr_full)
-# summary(lm_pnl_yield_tmax_quad)
-# anova test
+## summary(lm_pnl_yield_tmax_quad)
+## anova test
 anv_m1_m3 <- anova(lm_pnl_yield_year, lm_pnl_yield_tmax_quad)
-# anv_m1_m3
-# (anv_m1_m3[2, "Sum of Sq"]) # decrease in RSS means that model fits worse
+## anv_m1_m3
+## (anv_m1_m3[2, "Sum of Sq"]) ## decrease in RSS means that model fits worse
 
-# yield on full model
+## yield on full model
 lm_pnl_yield_full <- lm(yield_corn_bu_acre ~ year_id + meantmax + meantmax_sq + county_factor, data = county_yr_full)
-# summary(lm_pnl_yield_full)
-# anova test
+## summary(lm_pnl_yield_full)
+## anova test
 anv_m1_m4 <- anova(lm_pnl_yield_year, lm_pnl_yield_full)
 anv_m1_m4
 ```
@@ -554,15 +544,15 @@ anv_m1_m4
 
 <span style="color: blue;">Using the `anova()` function, fixed effects models were compared to test which model provides the best parsimonious fit of the data. The ANOVA test between the simple linear model of corn yield on year and the full model has a resulting p-value of **`r as.character(round(anv_m1_m4[2, "Pr(>F)"], 6))`**. This result means that the full model significantly improved the estimate over the simple linear model. Thus, we will proceed with the full model.</span>
 
-#### Plot best model
+##### Plot best model
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# save predicted values for best model
+## save predicted values for best model
 county_yr_full$y_hat <- lm_pnl_yield_full$fitted.values
 
-# car::scatterplot(y_hat~year_id|county_factor, data=county_yr_full, boxplots=FALSE, smooth=TRUE, reg.line=FALSE, legend=FALSE)
+## car::scatterplot(y_hat~year_id|county_factor, data=county_yr_full, boxplots=FALSE, smooth=TRUE, reg.line=FALSE, legend=FALSE)
 
-# plot y versus y_hat
+## plot y versus y_hat
 #plot
 ggplot(county_yr_full, aes(x = y_hat, y = yield_corn_bu_acre)) +
   geom_point(alpha=0.7, color = "navy", size = 2) +
@@ -582,20 +572,20 @@ ggplot(county_yr_full, aes(x = y_hat, y = yield_corn_bu_acre)) +
   )
 ```
 
-### Question 5
+#### Question 5
 Soybeans: Download NASS data on soybean yields and explore either a time series relationship for a given county, the cross-sectional relationship for a given year, or a panel across all counties and years.
 
-#### Load data
+##### Load data
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# pull data on soybean yield from nassqs_yields
-# parameters to query on 
+## pull data on soybean yield from nassqs_yields
+## parameters to query on 
 nassqs_auth(key = my_qs_api_key)
 params <- list(commodity_desc = "SOYBEANS", year__GE = 1981, state_alpha = "IA")
-# download
+## download
 soybeanyieldsall <- nassqs_yields(params)
 
-# clean and filter this dataset
+## clean and filter this dataset
 soybeanyieldsall$county_ansi <- as.numeric(soybeanyieldsall$county_ansi)
 soybeanyieldsall$yield <- as.numeric(soybeanyieldsall$Value)
 
@@ -610,26 +600,26 @@ soybeanyields <- soybeanyieldsall %>%
   
 soybeanyields <- tibble(soybeanyields) %>% 
   rename(year_id = year
-         , yield_soybean_bu_acre = yield # bushels per acre
+         , yield_soybean_bu_acre = yield ## bushels per acre
     )
 ```
 
-#### Develop models
+##### Develop models
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# model 
-# join with winneshiek corn data
+## model 
+## join with winneshiek corn data
 winneshiek_yields <- winneshiek_yields %>% 
   inner_join(soybeanyields, by=c("year_id"="year_id", "county_ansi"="county_ansi")) %>% 
   select(-fitted_quad)
 
-# trend model for yield growth
+## trend model for yield growth
 lm_yield_year <- lm(yield_soybean_bu_acre ~ year_id , data = winneshiek_yields)
-# summary(lm_yield_year)
+## summary(lm_yield_year)
 
-# quadratic trend model for yield growth
+## quadratic trend model for yield growth
 lm_yield_year_quad <- lm(yield_soybean_bu_acre ~ year_id + year_id_sq, data = winneshiek_yields)
-# summary(lm_yield_year_quad)
+## summary(lm_yield_year_quad)
 
 #anova
 anv_yr_yrsq <- anova(lm_yield_year, lm_yield_year_quad)
@@ -638,10 +628,10 @@ anv_yr_yrsq
 
 <span style="color: blue;">The `anova()` function was used to compare a simple linear model of soybean yield over time versus a quadratic time trend model to determine which model provides the best parsimonious fit of the data. The ANOVA test had a resulting p-value of **`r as.character(round(anv_yr_yrsq[2, "Pr(>F)"], 2))`**. This result means that the quadratic time trend did not significantly improve the estimate over the simple linear model. Thus, we will proceed with the simple linear model.</span>
 
-#### Plot best model
+##### Plot best model
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# label model in ggplot
+## label model in ggplot
 model_label <- as.character(as.expression(
   substitute(
     italic(y) == a + b %.% italic(year)*","~~italic(r)^2~"="~r2
@@ -652,9 +642,9 @@ model_label <- as.character(as.expression(
       )
   )
 ))
-# model_label
+## model_label
 
-# plot
+## plot
 ggplot(winneshiek_yields, aes(x = year_id, y = yield_soybean_bu_acre)) +
   geom_point(alpha=0.9, color = "cadetblue", size = 2) + 
   geom_smooth(method = 'lm', color = "grey35") +
@@ -673,18 +663,18 @@ ggplot(winneshiek_yields, aes(x = year_id, y = yield_soybean_bu_acre)) +
 
 <span style="color: blue;">Similar to corn yeild, there is a significant time trend in the soybean yields in  Winneshiek County, Iowa from `r as.character(min(winneshiek_yields$year_id))` to `r as.character(max(winneshiek_yields$year_id))`. Based on a simple linear regression, every additional year results in the soybean yield increasing by **`r round(summary(lm_yield_year)$coefficients[2, "Estimate"], 2)` bu/acre**. The annual time trend explains **`r scales::percent(summary(lm_yield_year)$r.squared)`** of the variation in soybean yields in  Winneshiek County, Iowa.</span>
 
-### Bonus
+#### Bonus
 Find a package to make a county map of Iowa displaying some sort of information about yields or weather. Interpret your map.
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# pull in spatial county data to join on count FIPS code
+## pull in spatial county data to join on count FIPS code
 counties <- us_counties() %>%
-  setNames(make.names(names(.), unique = TRUE)) %>% # for some reason the state_name field is duplicated
+  setNames(make.names(names(.), unique = TRUE)) %>% ## for some reason the state_name field is duplicated
   mutate(county_ansi = as.numeric(countyfp)) %>%
   filter(state_name == "Iowa") %>% 
-  st_transform(2163) # EPSG:2163 = US National Atlas Equal Area
+  st_transform(2163) ## EPSG:2163 = US National Atlas Equal Area
 
-# mapview(counties)
+## mapview(counties)
 
 #aggregate yields to county
 cornyields_sum <- cornyields %>% 
@@ -702,10 +692,10 @@ cornyields_sum <- cornyields %>%
     , n_years = max_year - min_year
   )
   
-# join to yields
+## join to yields
 spatial_county_yields <- inner_join(counties, cornyields_sum, by = "county_ansi")
 
-# map options
+## map options
 mapviewOptions(legend.pos = "bottomright", homebutton.pos = "bottomleft")
 
 lbl <- paste0("Avg. Corn Yield (bushels per acre) "
@@ -714,7 +704,7 @@ lbl <- paste0("Avg. Corn Yield (bushels per acre) "
     , as.character(max(spatial_county_yields$max_year))
   )
 
-# map 
+## map 
 mapview(spatial_county_yields
           , zcol = "mean_yield_corn_bu_acre"
           , alpha.regions = 0.7
@@ -741,18 +731,18 @@ mapview(spatial_county_yields
 
 <span style="color: blue;">In the time period examined, the northern counties in Iowa have had higher average outputs in corn per acre than southern counties. O'Brien County had the highest average yield at 160 bushels per acre while Clarke County had the lowest average at 112 bushels per acre.</span>
 
-### Bonus #2
+#### Bonus #2
 Challenge question - map trends in corn yields by county across Iowa. Interpret your map.
 
 ```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
-# use percent change to map
+## use percent change to map
 lbl2 <- paste0("% Change Corn Yield (bushels per acre) "
     , as.character(min(spatial_county_yields$min_year))
     ,"-"
     , as.character(max(spatial_county_yields$max_year))
   )
 
-# map 
+## map 
 mapview(spatial_county_yields
           , zcol = "yield_pct_chg"
           , alpha.regions = 0.7

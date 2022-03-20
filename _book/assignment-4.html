@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>16 Assignment | Analytics Portfolio</title>
+  <meta name="description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="16 Assignment | Analytics Portfolio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="16 Assignment | Analytics Portfolio" />
+  
+  <meta name="twitter:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="George Woolsey" />
+
+
+<meta name="date" content="2022-03-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lagos-analysis-1.html"/>
+<link rel="next" href="regression-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#this-book"><i class="fa fa-check"></i><b>1.1</b> This book<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Using R Markdown<span></span></a></li>
+<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="methods.html"><a href="methods.html#site-description"><i class="fa fa-check"></i><b>3.1</b> Site Description<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="methods.html"><a href="methods.html#data-download"><i class="fa fa-check"></i><b>3.2</b> Data Download<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="methods.html"><a href="methods.html#static-data-plotter"><i class="fa fa-check"></i><b>3.3</b> Static Data Plotter<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="methods.html"><a href="methods.html#interactive-data-plotter"><i class="fa fa-check"></i><b>3.4</b> Interactive Data Plotter<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="assignment.html"><a href="assignment.html"><i class="fa fa-check"></i><b>4</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="assignment.html"><a href="assignment.html#dygraph-example"><i class="fa fa-check"></i><b>4.1</b> DyGraph example<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="assignment.html"><a href="assignment.html#interact-with-this-chart"><i class="fa fa-check"></i><b>4.1.1</b> Interact with this chart!<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="assignment.html"><a href="assignment.html#poudre-river-overview"><i class="fa fa-check"></i><b>4.2</b> Poudre River Overview<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="assignment.html"><a href="assignment.html#map-of-poudre-river-trail-system"><i class="fa fa-check"></i><b>4.2.1</b> Map of Poudre River Trail System<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="assignment.html"><a href="assignment.html#link-to-presentation-style-webpage"><i class="fa fa-check"></i><b>4.3</b> Link to presentation-style webpage<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html"><i class="fa fa-check"></i><b>5</b> Wildfire Recovery<span></span></a></li>
+<li class="chapter" data-level="6" data-path="read-data.html"><a href="read-data.html"><i class="fa fa-check"></i><b>6</b> Read Data<span></span></a></li>
+<li class="chapter" data-level="7" data-path="assignment-1.html"><a href="assignment-1.html"><i class="fa fa-check"></i><b>7</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="assignment-1.html"><a href="assignment-1.html#question-1"><i class="fa fa-check"></i><b>7.1</b> Question 1)<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="assignment-1.html"><a href="assignment-1.html#daily-ndvi-vs-ndmi"><i class="fa fa-check"></i><b>7.1.1</b> Daily NDVI vs NDMI<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="assignment-1.html"><a href="assignment-1.html#monthly-ndvi-vs-ndmi"><i class="fa fa-check"></i><b>7.1.2</b> Monthly NDVI vs NDMI<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="assignment-1.html"><a href="assignment-1.html#question-2"><i class="fa fa-check"></i><b>7.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="assignment-1.html"><a href="assignment-1.html#question-3"><i class="fa fa-check"></i><b>7.3</b> Question 3)<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="assignment-1.html"><a href="assignment-1.html#question-4"><i class="fa fa-check"></i><b>7.4</b> Question 4)<span></span></a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="assignment-1.html"><a href="assignment-1.html#quick-monthly-ndvi-chart"><i class="fa fa-check"></i><b>7.4.1</b> Quick monthly NDVI chart<span></span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="assignment-1.html"><a href="assignment-1.html#detailed-monthly-ndvi-chart"><i class="fa fa-check"></i><b>7.4.2</b> Detailed monthly NDVI chart<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="assignment-1.html"><a href="assignment-1.html#question-5"><i class="fa fa-check"></i><b>7.5</b> Question 5)<span></span></a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="assignment-1.html"><a href="assignment-1.html#quick-monthly-ndsi-chart"><i class="fa fa-check"></i><b>7.5.1</b> Quick monthly NDSI chart<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="assignment-1.html"><a href="assignment-1.html#bonus-question-1"><i class="fa fa-check"></i><b>7.6</b> Bonus Question 1)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html"><i class="fa fa-check"></i><b>8</b> Web Scraping and Functions<span></span></a></li>
+<li class="chapter" data-level="9" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html"><i class="fa fa-check"></i><b>9</b> Simple web scraping<span></span></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#reading-an-html"><i class="fa fa-check"></i><b>9.1</b> Reading an html<span></span></a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#extract-csv-links-from-webpage"><i class="fa fa-check"></i><b>9.1.1</b> Extract CSV links from webpage<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#data-download-1"><i class="fa fa-check"></i><b>9.2</b> Data Download<span></span></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#download-data-in-a-for-loop"><i class="fa fa-check"></i><b>9.2.1</b> Download data in a for loop<span></span></a></li>
+<li class="chapter" data-level="9.2.2" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#download-data-in-a-map"><i class="fa fa-check"></i><b>9.2.2</b> Download data in a map<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#data-read-in"><i class="fa fa-check"></i><b>9.3</b> Data read-in<span></span></a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#read-in-just-the-snow-data-as-a-loop"><i class="fa fa-check"></i><b>9.3.1</b> Read in just the snow data as a loop<span></span></a></li>
+<li class="chapter" data-level="9.3.2" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#read-in-the-data-as-a-map-function"><i class="fa fa-check"></i><b>9.3.2</b> Read in the data as a map function<span></span></a></li>
+<li class="chapter" data-level="9.3.3" data-path="simple-web-scraping.html"><a href="simple-web-scraping.html#plot-snow-data"><i class="fa fa-check"></i><b>9.3.3</b> Plot snow data<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="assignment-2.html"><a href="assignment-2.html"><i class="fa fa-check"></i><b>10</b> Assignment:<span></span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="assignment-2.html"><a href="assignment-2.html#question-1-1"><i class="fa fa-check"></i><b>10.1</b> Question 1<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="assignment-2.html"><a href="assignment-2.html#question-2-1"><i class="fa fa-check"></i><b>10.2</b> Question 2<span></span></a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="assignment-2.html"><a href="assignment-2.html#download-with-for-loop"><i class="fa fa-check"></i><b>10.2.1</b> Download with for loop<span></span></a></li>
+<li class="chapter" data-level="10.2.2" data-path="assignment-2.html"><a href="assignment-2.html#download-with-map-function"><i class="fa fa-check"></i><b>10.2.2</b> Download with map function<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="assignment-2.html"><a href="assignment-2.html#question-3-1"><i class="fa fa-check"></i><b>10.3</b> Question 3<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="assignment-2.html"><a href="assignment-2.html#question-4-1"><i class="fa fa-check"></i><b>10.4</b> Question 4<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="assignment-2.html"><a href="assignment-2.html#question-5-1"><i class="fa fa-check"></i><b>10.5</b> Question 5<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="assignment-2.html"><a href="assignment-2.html#question-6"><i class="fa fa-check"></i><b>10.6</b> Question 6<span></span></a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="assignment-2.html"><a href="assignment-2.html#a-better-way"><i class="fa fa-check"></i><b>10.6.1</b> A better way?<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="assignment-2.html"><a href="assignment-2.html#bonus-question-1-1"><i class="fa fa-check"></i><b>10.7</b> Bonus Question 1<span></span></a></li>
+<li class="chapter" data-level="10.8" data-path="assignment-2.html"><a href="assignment-2.html#bonus-question-2"><i class="fa fa-check"></i><b>10.8</b> Bonus Question 2<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="sp1.html"><a href="sp1.html"><i class="fa fa-check"></i><b>11</b> Spatial Analysis (part 1)<span></span></a></li>
+<li class="chapter" data-level="12" data-path="lagos-analysis.html"><a href="lagos-analysis.html"><i class="fa fa-check"></i><b>12</b> LAGOS Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="lagos-analysis.html"><a href="lagos-analysis.html#loading-in-data"><i class="fa fa-check"></i><b>12.1</b> Loading in data<span></span></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="lagos-analysis.html"><a href="lagos-analysis.html#first-download-and-then-specifically-grab-the-locus-or-site-coordinates"><i class="fa fa-check"></i><b>12.1.1</b> First download and then specifically grab the locus (or site coordinates)<span></span></a></li>
+<li class="chapter" data-level="12.1.2" data-path="lagos-analysis.html"><a href="lagos-analysis.html#convert-to-spatial-data"><i class="fa fa-check"></i><b>12.1.2</b> Convert to spatial data<span></span></a></li>
+<li class="chapter" data-level="12.1.3" data-path="lagos-analysis.html"><a href="lagos-analysis.html#subset-to-only-minnesota"><i class="fa fa-check"></i><b>12.1.3</b> Subset to only Minnesota<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="assignment-3.html"><a href="assignment-3.html"><i class="fa fa-check"></i><b>13</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="assignment-3.html"><a href="assignment-3.html#question-1-2"><i class="fa fa-check"></i><b>13.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="assignment-3.html"><a href="assignment-3.html#question-2-2"><i class="fa fa-check"></i><b>13.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="13.3" data-path="assignment-3.html"><a href="assignment-3.html#question-3-2"><i class="fa fa-check"></i><b>13.3</b> Question 3)<span></span></a></li>
+<li class="chapter" data-level="13.4" data-path="assignment-3.html"><a href="assignment-3.html#question-4-2"><i class="fa fa-check"></i><b>13.4</b> Question 4)<span></span></a></li>
+<li class="chapter" data-level="13.5" data-path="assignment-3.html"><a href="assignment-3.html#question-5-2"><i class="fa fa-check"></i><b>13.5</b> Question 5)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="sp2.html"><a href="sp2.html"><i class="fa fa-check"></i><b>14</b> Spatial Analysis (part 2)<span></span></a></li>
+<li class="chapter" data-level="15" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html"><i class="fa fa-check"></i><b>15</b> LAGOS Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html#loading-in-data-1"><i class="fa fa-check"></i><b>15.1</b> Loading in data<span></span></a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html#first-download-and-then-specifically-grab-the-locus-or-site-lat-longs"><i class="fa fa-check"></i><b>15.1.1</b> First download and then specifically grab the locus (or site lat longs)<span></span></a></li>
+<li class="chapter" data-level="15.1.2" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html#subset-columns-nutr-to-only-keep-key-info-that-we-want"><i class="fa fa-check"></i><b>15.1.2</b> Subset columns nutr to only keep key info that we want<span></span></a></li>
+<li class="chapter" data-level="15.1.3" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html#keep-sites-with-at-least-200-observations"><i class="fa fa-check"></i><b>15.1.3</b> Keep sites with at least 200 observations<span></span></a></li>
+<li class="chapter" data-level="15.1.4" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html#join-water-quality-data-to-spatial-data"><i class="fa fa-check"></i><b>15.1.4</b> Join water quality data to spatial data<span></span></a></li>
+<li class="chapter" data-level="15.1.5" data-path="lagos-analysis-1.html"><a href="lagos-analysis-1.html#mean-chl_a-map"><i class="fa fa-check"></i><b>15.1.5</b> Mean Chl_a map<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="assignment-4.html"><a href="assignment-4.html"><i class="fa fa-check"></i><b>16</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="assignment-4.html"><a href="assignment-4.html#question-1-3"><i class="fa fa-check"></i><b>16.1</b> Question 1)<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="assignment-4.html"><a href="assignment-4.html#a"><i class="fa fa-check"></i><b>16.1.1</b> 1a)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="assignment-4.html"><a href="assignment-4.html#question-2-3"><i class="fa fa-check"></i><b>16.2</b> Question 2)<span></span></a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="assignment-4.html"><a href="assignment-4.html#a-1"><i class="fa fa-check"></i><b>16.2.1</b> 2a)<span></span></a></li>
+<li class="chapter" data-level="16.2.2" data-path="assignment-4.html"><a href="assignment-4.html#b"><i class="fa fa-check"></i><b>16.2.2</b> 2b)<span></span></a></li>
+<li class="chapter" data-level="16.2.3" data-path="assignment-4.html"><a href="assignment-4.html#c"><i class="fa fa-check"></i><b>16.2.3</b> 2c)<span></span></a></li>
+<li class="chapter" data-level="16.2.4" data-path="assignment-4.html"><a href="assignment-4.html#c-bonus"><i class="fa fa-check"></i><b>16.2.4</b> 2c) Bonus<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="assignment-4.html"><a href="assignment-4.html#question-3-3"><i class="fa fa-check"></i><b>16.3</b> Question 3)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>17</b> Regression Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="regression-analysis.html"><a href="regression-analysis.html#weather-data-analysis"><i class="fa fa-check"></i><b>17.1</b> Weather Data Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="regression-analysis.html"><a href="regression-analysis.html#load-the-prism-daily-maximum-temperatures"><i class="fa fa-check"></i><b>17.1.1</b> Load the PRISM daily maximum temperatures<span></span></a></li>
+<li class="chapter" data-level="17.1.2" data-path="regression-analysis.html"><a href="regression-analysis.html#tidy-weather-data"><i class="fa fa-check"></i><b>17.1.2</b> tidy weather data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="regression-analysis.html"><a href="regression-analysis.html#temperature-trends"><i class="fa fa-check"></i><b>17.2</b> Temperature trends<span></span></a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="regression-analysis.html"><a href="regression-analysis.html#summer-temperature-trends-winneshiek-county"><i class="fa fa-check"></i><b>17.2.1</b> Summer temperature trends: Winneshiek County<span></span></a></li>
+<li class="chapter" data-level="17.2.2" data-path="regression-analysis.html"><a href="regression-analysis.html#winter-temperatures---winneshiek-county"><i class="fa fa-check"></i><b>17.2.2</b> Winter Temperatures - Winneshiek County<span></span></a></li>
+<li class="chapter" data-level="17.2.3" data-path="regression-analysis.html"><a href="regression-analysis.html#multiple-regression-quadratic-time-trend"><i class="fa fa-check"></i><b>17.2.3</b> Multiple regression – Quadratic time trend<span></span></a></li>
+<li class="chapter" data-level="17.2.4" data-path="regression-analysis.html"><a href="regression-analysis.html#download-nass-corn-yield-data"><i class="fa fa-check"></i><b>17.2.4</b> Download NASS corn yield data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="regression-analysis.html"><a href="regression-analysis.html#assignment-5"><i class="fa fa-check"></i><b>17.3</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="regression-analysis.html"><a href="regression-analysis.html#question-1a"><i class="fa fa-check"></i><b>17.3.1</b> Question 1a<span></span></a></li>
+<li class="chapter" data-level="17.3.2" data-path="regression-analysis.html"><a href="regression-analysis.html#question-1b"><i class="fa fa-check"></i><b>17.3.2</b> Question 1b<span></span></a></li>
+<li class="chapter" data-level="17.3.3" data-path="regression-analysis.html"><a href="regression-analysis.html#question-2-4"><i class="fa fa-check"></i><b>17.3.3</b> Question 2<span></span></a></li>
+<li class="chapter" data-level="17.3.4" data-path="regression-analysis.html"><a href="regression-analysis.html#question-3-4"><i class="fa fa-check"></i><b>17.3.4</b> Question 3<span></span></a></li>
+<li class="chapter" data-level="17.3.5" data-path="regression-analysis.html"><a href="regression-analysis.html#question-4-3"><i class="fa fa-check"></i><b>17.3.5</b> Question 4<span></span></a></li>
+<li class="chapter" data-level="17.3.6" data-path="regression-analysis.html"><a href="regression-analysis.html#question-5-3"><i class="fa fa-check"></i><b>17.3.6</b> Question 5<span></span></a></li>
+<li class="chapter" data-level="17.3.7" data-path="regression-analysis.html"><a href="regression-analysis.html#bonus"><i class="fa fa-check"></i><b>17.3.7</b> Bonus<span></span></a></li>
+<li class="chapter" data-level="17.3.8" data-path="regression-analysis.html"><a href="regression-analysis.html#bonus-2"><i class="fa fa-check"></i><b>17.3.8</b> Bonus #2<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html"><i class="fa fa-check"></i><b>18</b> Beginning Machine Learning<span></span></a></li>
+<li class="chapter" data-level="19" data-path="objective.html"><a href="objective.html"><i class="fa fa-check"></i><b>19</b> Objective<span></span></a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="objective.html"><a href="objective.html#data-read"><i class="fa fa-check"></i><b>19.1</b> Data read<span></span></a></li>
+<li class="chapter" data-level="19.2" data-path="objective.html"><a href="objective.html#spatial-autocorrelation-grouping"><i class="fa fa-check"></i><b>19.2</b> Spatial autocorrelation grouping<span></span></a></li>
+<li class="chapter" data-level="19.3" data-path="objective.html"><a href="objective.html#model-development"><i class="fa fa-check"></i><b>19.3</b> Model development<span></span></a></li>
+<li class="chapter" data-level="19.4" data-path="objective.html"><a href="objective.html#chl-a-model"><i class="fa fa-check"></i><b>19.4</b> Chl-a model<span></span></a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="objective.html"><a href="objective.html#chl-a-model-measuredpredicted-plot"><i class="fa fa-check"></i><b>19.4.1</b> Chl-a Model Measured/Predicted Plot<span></span></a></li>
+<li class="chapter" data-level="19.4.2" data-path="objective.html"><a href="objective.html#chl-a-error-metrics"><i class="fa fa-check"></i><b>19.4.2</b> Chl-a Error Metrics<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="objective.html"><a href="objective.html#tss-model"><i class="fa fa-check"></i><b>19.5</b> TSS Model<span></span></a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="objective.html"><a href="objective.html#tss-plot"><i class="fa fa-check"></i><b>19.5.1</b> TSS plot<span></span></a></li>
+<li class="chapter" data-level="19.5.2" data-path="objective.html"><a href="objective.html#tss-evaluation"><i class="fa fa-check"></i><b>19.5.2</b> TSS Evaluation<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="q1.html"><a href="q1.html"><i class="fa fa-check"></i><b>20</b> Q1)<span></span></a></li>
+<li class="chapter" data-level="21" data-path="q2.html"><a href="q2.html"><i class="fa fa-check"></i><b>21</b> Q2)<span></span></a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analytics Portfolio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="assignment-4" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">16</span> Assignment<a href="assignment-4.html#assignment-4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="question-1-3" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Question 1)<a href="assignment-4.html#question-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is the correlation between Secchi Disk Depth and Chlorophyll a for sites with at least 200 observations?</p>
+<ul>
+<li>Here, I just want a plot of chla vs secchi for all sites</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="assignment-4.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the mean_values_200 dataset explore relationship of chla and secchi</span></span>
+<span id="cb47-2"><a href="assignment-4.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mean_values_200, <span class="fu">aes</span>(<span class="at">x =</span> mean_chl, <span class="at">y =</span> mean_secchi)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="assignment-4.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">&quot;navy&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb47-4"><a href="assignment-4.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">color =</span> <span class="st">&quot;grey35&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="assignment-4.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb47-6"><a href="assignment-4.html#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relationship between Secchi Disk Transparency and Chlorophyll a&quot;</span></span>
+<span id="cb47-7"><a href="assignment-4.html#cb47-7" aria-hidden="true" tabindex="-1"></a>    , <span class="at">subtitle =</span> <span class="st">&quot;for North East US lakes with at least 200 obs.&quot;</span></span>
+<span id="cb47-8"><a href="assignment-4.html#cb47-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-9"><a href="assignment-4.html#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Chlorophyll a (mcg/L)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-10"><a href="assignment-4.html#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Secchi disk transparency (m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="assignment-4.html#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb47-12"><a href="assignment-4.html#cb47-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb47-13"><a href="assignment-4.html#cb47-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span></span>
+<span id="cb47-14"><a href="assignment-4.html#cb47-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="768" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="assignment-4.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple linear model Chlorophyll a (mcg per L) on Secchi disk transparency (m) </span></span>
+<span id="cb48-2"><a href="assignment-4.html#cb48-2" aria-hidden="true" tabindex="-1"></a>lm_secchi_chla <span class="ot">&lt;-</span> <span class="fu">lm</span>(mean_secchi <span class="sc">~</span> mean_chl, <span class="at">data =</span> mean_values_200)</span>
+<span id="cb48-3"><a href="assignment-4.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="assignment-4.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># explore model results</span></span>
+<span id="cb48-5"><a href="assignment-4.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># names(summary(lm_secchi_chla))</span></span>
+<span id="cb48-6"><a href="assignment-4.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(lm_secchi_chla)</span></span>
+<span id="cb48-7"><a href="assignment-4.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(lm_secchi_chla)$coefficients[&quot;mean_chl&quot;, &quot;Estimate&quot;]</span></span>
+<span id="cb48-8"><a href="assignment-4.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(lm_secchi_chla)$adj.r.squared</span></span></code></pre></div>
+<p><span style="color: blue;">The relationship between Secchi disk transparency (m) and Chlorophyll a (mcg/L) in the lakes included in this analysis is negative. As Chlorophyll a concentration increases, the depth at which a Secchi disk can be seen decreases. Based on a simple linear regression for every one unit increase in Chlorophyll a (mcg/L), the Secchi disk transparency changes by <strong>-0.07m</strong>. The variation in Chlorophyll a explains <strong>27%</strong> of the variation in Secchi disk transparency for lakes included in this analysis.</span></p>
+<div id="a" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> 1a)<a href="assignment-4.html#a" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Why might this be the case?</p>
+<p><span style="color: blue;">A Secchi disk is a black and white disk that is lowered by hand into the water to the depth at which it vanishes from sight; the distance to vanishing is then recorded (<a href="https://archive.epa.gov/water/archive/web/html/155.html">US Environmental Protection Agency</a>). The clearer the water, the greater the distance. Chlorophyll a is the predominant type of chlorophyll found in green plants and algae (<a href="https://www.epa.gov/national-aquatic-resource-surveys/indicators-chlorophyll">US Environmental Protection Agency</a>). The higher the
+concentration of plants and algae in a lake, the lower the sub-surface visibility.</span></p>
+<p><img src="https://www.lakescientist.com/wp-content/uploads/2010/04/HAB-LakeErie-300x225.jpg" /></p>
+<p><span style="color: blue;">Blue-green algae bloom on the shore of Catawba Island, Ohio, in Lake Erie, summer 2009. Photo: NOAA.</span></p>
+</div>
+</div>
+<div id="question-2-3" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Question 2)<a href="assignment-4.html#question-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What states have the most data?</p>
+<div id="a-1" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> 2a)<a href="assignment-4.html#a-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First you will need to make a lagos spatial dataset that has the total
+number of counts per site.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="assignment-4.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using the epi_nutr dataset filtered for observations that have </span></span>
+<span id="cb49-2"><a href="assignment-4.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># non-null values in both chla and secchi columns ... </span></span>
+<span id="cb49-3"><a href="assignment-4.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># row is unique by lagoslakeid and sampledate</span></span>
+<span id="cb49-4"><a href="assignment-4.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#check how row is unique</span></span>
+<span id="cb49-5"><a href="assignment-4.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nrow(chla_secchi)</span></span>
+<span id="cb49-6"><a href="assignment-4.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># chla_secchi %&gt;% distinct(lagoslakeid) %&gt;% nrow(.)</span></span>
+<span id="cb49-7"><a href="assignment-4.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># chla_secchi %&gt;% distinct(lagoslakeid, sampledate) %&gt;% nrow(.)</span></span>
+<span id="cb49-8"><a href="assignment-4.html#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="assignment-4.html#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize data by lake</span></span>
+<span id="cb49-10"><a href="assignment-4.html#cb49-10" aria-hidden="true" tabindex="-1"></a>  lake_clarity <span class="ot">&lt;-</span> chla_secchi <span class="sc">%&gt;%</span> </span>
+<span id="cb49-11"><a href="assignment-4.html#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(lagoslakeid) <span class="sc">%&gt;%</span></span>
+<span id="cb49-12"><a href="assignment-4.html#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb49-13"><a href="assignment-4.html#cb49-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">mean_chl =</span> <span class="fu">mean</span>(chla, <span class="at">na.rm=</span>T)</span>
+<span id="cb49-14"><a href="assignment-4.html#cb49-14" aria-hidden="true" tabindex="-1"></a>      , <span class="at">mean_secchi=</span><span class="fu">mean</span>(secchi, <span class="at">na.rm=</span>T)</span>
+<span id="cb49-15"><a href="assignment-4.html#cb49-15" aria-hidden="true" tabindex="-1"></a>      , <span class="at">count_obs =</span> <span class="fu">n</span>()</span>
+<span id="cb49-16"><a href="assignment-4.html#cb49-16" aria-hidden="true" tabindex="-1"></a>      , <span class="at">first_date =</span> <span class="fu">min</span>(sampledate)</span>
+<span id="cb49-17"><a href="assignment-4.html#cb49-17" aria-hidden="true" tabindex="-1"></a>      , <span class="at">last_date =</span> <span class="fu">max</span>(sampledate)</span>
+<span id="cb49-18"><a href="assignment-4.html#cb49-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb49-19"><a href="assignment-4.html#cb49-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#count</span></span>
+<span id="cb49-20"><a href="assignment-4.html#cb49-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nrow(lake_clarity)</span></span></code></pre></div>
+</div>
+<div id="b" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> 2b)<a href="assignment-4.html#b" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Second, you will need to join this point dataset to the us_boundaries data.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="assignment-4.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make lake clarity data created above spatial</span></span>
+<span id="cb50-2"><a href="assignment-4.html#cb50-2" aria-hidden="true" tabindex="-1"></a>spatial_lake_clarity <span class="ot">&lt;-</span> spatial_lakes <span class="sc">%&gt;%</span>  </span>
+<span id="cb50-3"><a href="assignment-4.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(lake_clarity, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;lagoslakeid&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb50-4"><a href="assignment-4.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">2163</span>) <span class="co"># EPSG:2163 = US National Atlas Equal Area</span></span>
+<span id="cb50-5"><a href="assignment-4.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#count</span></span>
+<span id="cb50-6"><a href="assignment-4.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nrow(spatial_lake_clarity)</span></span>
+<span id="cb50-7"><a href="assignment-4.html#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="assignment-4.html#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load in us states polygons</span></span>
+<span id="cb50-9"><a href="assignment-4.html#cb50-9" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">us_states</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb50-10"><a href="assignment-4.html#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">2163</span>) <span class="co"># EPSG:2163 = US National Atlas Equal Area</span></span>
+<span id="cb50-11"><a href="assignment-4.html#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="assignment-4.html#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="co"># spatial join points to polygons</span></span>
+<span id="cb50-13"><a href="assignment-4.html#cb50-13" aria-hidden="true" tabindex="-1"></a>spatial_lake_clarity <span class="ot">&lt;-</span> <span class="fu">st_join</span>(spatial_lake_clarity, states, <span class="at">left =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb50-14"><a href="assignment-4.html#cb50-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-15"><a href="assignment-4.html#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="co"># note, there are lakes for which there are clarity measurements but the </span></span>
+<span id="cb50-16"><a href="assignment-4.html#cb50-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># point location falls outside of the borders of the US polygons</span></span>
+<span id="cb50-17"><a href="assignment-4.html#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="co"># see map</span></span>
+<span id="cb50-18"><a href="assignment-4.html#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="co"># mapview(spatial_lake_clarity %&gt;% filter(is.na(statefp)))</span></span>
+<span id="cb50-19"><a href="assignment-4.html#cb50-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-20"><a href="assignment-4.html#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="co"># rename state if outside US border</span></span>
+<span id="cb50-21"><a href="assignment-4.html#cb50-21" aria-hidden="true" tabindex="-1"></a>spatial_lake_clarity <span class="ot">&lt;-</span> spatial_lake_clarity <span class="sc">%&gt;%</span> </span>
+<span id="cb50-22"><a href="assignment-4.html#cb50-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state_name =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(state_name), <span class="st">&quot;Outside US&quot;</span>, state_name))</span></code></pre></div>
+</div>
+<div id="c" class="section level3 hasAnchor" number="16.2.3">
+<h3><span class="header-section-number">16.2.3</span> 2c)<a href="assignment-4.html#c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Then you will want to group by state and sum all the observations in that state and arrange that data from most to least total observations per state.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="assignment-4.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize lake clarity data to state level</span></span>
+<span id="cb51-2"><a href="assignment-4.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  state_lake_clarity <span class="ot">&lt;-</span> spatial_lake_clarity <span class="sc">%&gt;%</span> </span>
+<span id="cb51-3"><a href="assignment-4.html#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(statefp, state_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-4"><a href="assignment-4.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb51-5"><a href="assignment-4.html#cb51-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">count_lakes_w_data =</span> <span class="fu">n</span>()</span>
+<span id="cb51-6"><a href="assignment-4.html#cb51-6" aria-hidden="true" tabindex="-1"></a>      , <span class="at">count_clarity_measurements =</span> <span class="fu">sum</span>(count_obs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-7"><a href="assignment-4.html#cb51-7" aria-hidden="true" tabindex="-1"></a>      , <span class="at">mean_clarity_measurements =</span> <span class="fu">mean</span>(count_obs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-8"><a href="assignment-4.html#cb51-8" aria-hidden="true" tabindex="-1"></a>      , <span class="at">first_date =</span> <span class="fu">min</span>(first_date)</span>
+<span id="cb51-9"><a href="assignment-4.html#cb51-9" aria-hidden="true" tabindex="-1"></a>      , <span class="at">last_date =</span> <span class="fu">max</span>(last_date)</span>
+<span id="cb51-10"><a href="assignment-4.html#cb51-10" aria-hidden="true" tabindex="-1"></a>      , <span class="at">mean_chl_wgt_area =</span> <span class="fu">weighted.mean</span>(mean_chl, <span class="at">w =</span> lake_area_ha, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-11"><a href="assignment-4.html#cb51-11" aria-hidden="true" tabindex="-1"></a>      , <span class="at">mean_secchi_wgt_area =</span> <span class="fu">weighted.mean</span>(mean_secchi, <span class="at">w =</span> lake_area_ha, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-12"><a href="assignment-4.html#cb51-12" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-13"><a href="assignment-4.html#cb51-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="sc">-</span>count_clarity_measurements) </span>
+<span id="cb51-14"><a href="assignment-4.html#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-15"><a href="assignment-4.html#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="co"># plot data</span></span>
+<span id="cb51-16"><a href="assignment-4.html#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(state_lake_clarity, <span class="fu">aes</span>(<span class="at">x=</span>count_clarity_measurements, <span class="at">y =</span> <span class="fu">reorder</span>(state_name, count_clarity_measurements), <span class="at">fill =</span> count_clarity_measurements)) <span class="sc">+</span></span>
+<span id="cb51-17"><a href="assignment-4.html#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb51-18"><a href="assignment-4.html#cb51-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(count_clarity_measurements, <span class="at">accuracy =</span> <span class="dv">1</span>)), <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">hjust =</span> <span class="st">&quot;left&quot;</span>, <span class="at">nudge_x =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb51-19"><a href="assignment-4.html#cb51-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(state_lake_clarity<span class="sc">$</span>count_clarity_measurements)<span class="sc">*</span><span class="fl">1.05</span>) ) <span class="sc">+</span></span>
+<span id="cb51-20"><a href="assignment-4.html#cb51-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-21"><a href="assignment-4.html#cb51-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;Number of Lake Clarity Measurements by State&quot;</span></span>
+<span id="cb51-22"><a href="assignment-4.html#cb51-22" aria-hidden="true" tabindex="-1"></a>      , <span class="at">subtitle =</span> <span class="st">&quot;only observations with both Secchi and Chlorophyll measurements included&quot;</span></span>
+<span id="cb51-23"><a href="assignment-4.html#cb51-23" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb51-24"><a href="assignment-4.html#cb51-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-25"><a href="assignment-4.html#cb51-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;# Clarity Measurements&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-26"><a href="assignment-4.html#cb51-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">option =</span> <span class="st">&quot;viridis&quot;</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb51-27"><a href="assignment-4.html#cb51-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb51-28"><a href="assignment-4.html#cb51-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb51-29"><a href="assignment-4.html#cb51-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span></span>
+<span id="cb51-30"><a href="assignment-4.html#cb51-30" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)</span>
+<span id="cb51-31"><a href="assignment-4.html#cb51-31" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle =</span> <span class="dv">0</span>)</span>
+<span id="cb51-32"><a href="assignment-4.html#cb51-32" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="768" /></p>
+<p><span style="color: blue;"> Using the <code>epi_nutr</code> dataset filtered for observations that have non-null values in both the <code>chla</code> and <code>secchi</code> column, <strong>Minnesota</strong> is the state with the most lake clarity measurements with <strong>78,455</strong> observations covering <strong>2,740</strong> lakes.</span></p>
+</div>
+<div id="c-bonus" class="section level3 hasAnchor" number="16.2.4">
+<h3><span class="header-section-number">16.2.4</span> 2c) Bonus<a href="assignment-4.html#c-bonus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Count the unique lakes in each state with at least one clarity measurment</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="assignment-4.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot # lakes with clarity data</span></span>
+<span id="cb52-2"><a href="assignment-4.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(state_lake_clarity, <span class="fu">aes</span>(<span class="at">x=</span>count_lakes_w_data, <span class="at">y =</span> <span class="fu">reorder</span>(state_name, count_lakes_w_data), <span class="at">fill =</span> count_lakes_w_data)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="assignment-4.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha=</span><span class="fl">0.9</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb52-4"><a href="assignment-4.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">comma</span>(count_lakes_w_data, <span class="at">accuracy =</span> <span class="dv">1</span>)), <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">angle =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">hjust =</span> <span class="st">&quot;left&quot;</span>, <span class="at">nudge_x =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="assignment-4.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(state_lake_clarity<span class="sc">$</span>count_lakes_w_data)<span class="sc">*</span><span class="fl">1.07</span>) ) <span class="sc">+</span></span>
+<span id="cb52-6"><a href="assignment-4.html#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb52-7"><a href="assignment-4.html#cb52-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">&quot;Number of Lakes w/ at least one clarity measurement by State&quot;</span></span>
+<span id="cb52-8"><a href="assignment-4.html#cb52-8" aria-hidden="true" tabindex="-1"></a>      , <span class="at">subtitle =</span> <span class="st">&quot;only observations with both Secchi and Chlorophyll measurements included&quot;</span></span>
+<span id="cb52-9"><a href="assignment-4.html#cb52-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb52-10"><a href="assignment-4.html#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-11"><a href="assignment-4.html#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;# Lakes w/ Clarity Measurements&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-12"><a href="assignment-4.html#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">option =</span> <span class="st">&quot;cividis&quot;</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb52-13"><a href="assignment-4.html#cb52-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb52-14"><a href="assignment-4.html#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb52-15"><a href="assignment-4.html#cb52-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span></span>
+<span id="cb52-16"><a href="assignment-4.html#cb52-16" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)</span>
+<span id="cb52-17"><a href="assignment-4.html#cb52-17" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle =</span> <span class="dv">0</span>)</span>
+<span id="cb52-18"><a href="assignment-4.html#cb52-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="768" /></p>
+</div>
+</div>
+<div id="question-3-3" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> Question 3)<a href="assignment-4.html#question-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Is there a spatial pattern in Secchi disk depth for lakes with at least 200 observations?</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="assignment-4.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mapviewOptions</span>(<span class="at">legend.pos =</span> <span class="st">&quot;bottomright&quot;</span>, <span class="at">homebutton.pos =</span> <span class="st">&quot;bottomleft&quot;</span>)</span>
+<span id="cb53-2"><a href="assignment-4.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using the same dataset used to map chlorophyll a measurements</span></span>
+<span id="cb53-3"><a href="assignment-4.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mapview</span>(mean_spatial</span>
+<span id="cb53-4"><a href="assignment-4.html#cb53-4" aria-hidden="true" tabindex="-1"></a>          , <span class="at">zcol =</span> <span class="st">&quot;mean_secchi&quot;</span></span>
+<span id="cb53-5"><a href="assignment-4.html#cb53-5" aria-hidden="true" tabindex="-1"></a>          , <span class="at">cex =</span> <span class="st">&quot;mean_secchi&quot;</span></span>
+<span id="cb53-6"><a href="assignment-4.html#cb53-6" aria-hidden="true" tabindex="-1"></a>          , <span class="at">alpha.regions =</span> <span class="fl">0.5</span></span>
+<span id="cb53-7"><a href="assignment-4.html#cb53-7" aria-hidden="true" tabindex="-1"></a>          , <span class="at">map.types =</span>  <span class="st">&quot;OpenStreetMap&quot;</span></span>
+<span id="cb53-8"><a href="assignment-4.html#cb53-8" aria-hidden="true" tabindex="-1"></a>          , <span class="at">label =</span> <span class="fu">c</span>(<span class="st">&quot;gnis_name&quot;</span>)</span>
+<span id="cb53-9"><a href="assignment-4.html#cb53-9" aria-hidden="true" tabindex="-1"></a>          , <span class="at">col.regions =</span> <span class="fu">mako</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb53-10"><a href="assignment-4.html#cb53-10" aria-hidden="true" tabindex="-1"></a>          , <span class="at">at =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb53-11"><a href="assignment-4.html#cb53-11" aria-hidden="true" tabindex="-1"></a>          , <span class="at">legend =</span> <span class="cn">TRUE</span></span>
+<span id="cb53-12"><a href="assignment-4.html#cb53-12" aria-hidden="true" tabindex="-1"></a>          , <span class="at">layer.name =</span> <span class="st">&quot;Secchi disk transparency (m)&quot;</span></span>
+<span id="cb53-13"><a href="assignment-4.html#cb53-13" aria-hidden="true" tabindex="-1"></a>          , <span class="at">popup =</span> <span class="fu">popupTable</span>(</span>
+<span id="cb53-14"><a href="assignment-4.html#cb53-14" aria-hidden="true" tabindex="-1"></a>              mean_spatial</span>
+<span id="cb53-15"><a href="assignment-4.html#cb53-15" aria-hidden="true" tabindex="-1"></a>              , <span class="at">zcol =</span> <span class="fu">c</span>(</span>
+<span id="cb53-16"><a href="assignment-4.html#cb53-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;gnis_name&quot;</span></span>
+<span id="cb53-17"><a href="assignment-4.html#cb53-17" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;mean_secchi&quot;</span></span>
+<span id="cb53-18"><a href="assignment-4.html#cb53-18" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;mean_chl&quot;</span></span>
+<span id="cb53-19"><a href="assignment-4.html#cb53-19" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb53-20"><a href="assignment-4.html#cb53-20" aria-hidden="true" tabindex="-1"></a>              , <span class="at">row.numbers =</span> <span class="cn">FALSE</span></span>
+<span id="cb53-21"><a href="assignment-4.html#cb53-21" aria-hidden="true" tabindex="-1"></a>              , <span class="at">feature.id =</span> <span class="cn">FALSE</span></span>
+<span id="cb53-22"><a href="assignment-4.html#cb53-22" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb53-23"><a href="assignment-4.html#cb53-23" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div>
+<div id="htmlwidget-2246679e8f81611c9729" style="width:768px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2246679e8f81611c9729">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[[44.464741,43.737817,43.46829,39.572346,44.700302,45.273736,46.008637,44.99824,44.714411,43.364211,45.184459,44.721881,45.138607,44.836876,44.930886,44.732821,44.495383,45.007824,45.061049,44.383202,46.036814,46.043693,46.001794,46.016693,43.147757,44.972199,43.597788,40.177545,38.191845,37.57015,36.661942,36.56094,36.490608,43.614804,42.641671,42.866518,42.855758,41.983438,41.499841,41.442936,41.8822,41.410312,41.563199,41.383814,41.554434,41.876332,41.706574,41.439358,41.511129,41.441102,41.422103,41.677571,41.50215,41.509926,41.735309,41.696441,44.651526,43.202378,44.993491,41.97365,42.104206,42.362418,46.251455,42.094329],[-73.287532,-73.38038,-72.987965,-84.748952,-93.473593,-92.947538,-89.699786,-93.113149,-93.447482,-73.052027,-93.058609,-93.266846,-93.152981,-93.640379,-93.601545,-93.411219,-92.286713,-93.420596,-93.16707,-72.495912,-89.629758,-89.673305,-89.613093,-89.614589,-72.805908,-72.874959,-71.156964,-92.641957,-92.899213,-93.718828,-93.196415,-93.511837,-92.786039,-73.574073,-76.918376,-75.755892,-75.517344,-71.662141,-71.542433,-71.718352,-71.691108,-71.553336,-71.479539,-71.691615,-71.478553,-71.584137,-71.405437,-71.57506,-71.572995,-71.690336,-71.552093,-71.550382,-71.564772,-71.604388,-71.410773,-71.619423,-93.460222,-75.922466,-93.471793,-74.150688,-75.287129,-74.442637,-89.503567,-74.839642],[6.99884958699753,3.46282888584502,8.31358087044667,3,3.89988930552275,4.76769100073079,11.299789815283,6.42071108560361,4.15152859684453,4.01264230360414,3.93617125560405,4.99310751027046,4.12719365777442,5.15463953972446,4.79174610936581,6.47567516686331,3.154585928845,4.8242429620608,4.39951123320652,8.48408615539995,7.11957894100233,9.6587180883714,13.895746994535,12.8370837861396,7.57314939329494,4.64497450761871,12.8569131164435,3.95143888608298,3.73614860121353,5.6368576683426,3.68703231822071,5.00930116849096,5.47250561156315,15,11.5334724203489,8.39009597461703,6.6066342685143,8.56250542277953,4.76671132385532,5.6674391876653,5.59948156219995,11.7344926724604,4.63728994066853,6.10310827461518,5.60819398614112,5.86777416471848,7.99245870015573,3.88577327567135,6.08362233467769,4.66863490408496,5.78446595790593,5.92014294018885,4.95814435497575,5.25756850799452,6.45315710344492,6.04674990984967,4.39298177643518,6.40072516235309,6.18934511440934,5.90514046769083,5.36026281044983,4.75513675810406,8.88180935725204,7.53175019756677],null,"Secchi disk transparency (m)",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":[0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9],"fill":true,"fillColor":["#60CEAC","#DEF5E5","#395D9C","#DEF5E5","#DEF5E5","#DEF5E5","#382A54","#60CEAC","#DEF5E5","#DEF5E5","#DEF5E5","#DEF5E5","#DEF5E5","#60CEAC","#DEF5E5","#60CEAC","#DEF5E5","#DEF5E5","#DEF5E5","#395D9C","#60CEAC","#395D9C","#382A54","#382A54","#60CEAC","#DEF5E5","#382A54","#DEF5E5","#DEF5E5","#60CEAC","#DEF5E5","#DEF5E5","#60CEAC","#0B0405","#382A54","#395D9C","#60CEAC","#395D9C","#DEF5E5","#60CEAC","#60CEAC","#382A54","#DEF5E5","#60CEAC","#60CEAC","#60CEAC","#60CEAC","#DEF5E5","#60CEAC","#DEF5E5","#60CEAC","#60CEAC","#DEF5E5","#60CEAC","#60CEAC","#60CEAC","#DEF5E5","#60CEAC","#60CEAC","#60CEAC","#60CEAC","#DEF5E5","#395D9C","#60CEAC"],"fillOpacity":[0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]},null,null,["<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>NA&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>3.2454980&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>10.096824&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>NA&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>0.9211806&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 7.606879&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Elfin Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>4.1097047&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 7.143249&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Acton Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>0.6169512&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>55.222149&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Spring Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.2084716&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>48.421703&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Forest Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.7789000&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>14.856923&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Sparkling Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>6.0726166&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.813637&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>McCarrons Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.8654726&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>13.399701&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Upper Prior Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.3738806&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>45.631828&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Danby Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.2825871&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 4.729652&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Peltier Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.2323207&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>63.030802&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Crystal Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.9270721&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>18.340811&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Golden Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.3578846&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>34.135577&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Bavaria&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.0332512&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>13.835961&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Minnetonka&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.7947120&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>30.081099&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lower Prior Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.9016019&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>10.832039&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Pepin&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>0.7185645&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>28.737660&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Medicine Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.8160731&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>28.005388&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Valentine Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.5368860&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>17.783904&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Curtis Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>4.2217822&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 7.630248&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Allequash Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>3.3248565&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 6.796938&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Trout Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>4.9938980&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.924100&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Crystal Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>7.7790061&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 1.771154&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Big Muskellunge Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>7.0831195&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.820865&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Cole Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>3.6230000&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.242167&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Carmi&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.6982353&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>21.158745&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Wentworth&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>7.0961538&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 1.830342&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Forest Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.2423565&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>12.949074&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake of the Ozarks&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.1008406&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>23.942112&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Stockton Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.3502256&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>10.081773&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Taneycomo&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.0685552&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>29.834278&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Table Rock Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.9377166&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>16.137824&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Bull Shoals Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.2421928&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>17.790000&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>NA&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>8.5048600&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 0.670880&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Seneca Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>6.2262222&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.158815&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Tuscarora Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>4.1600000&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 5.093667&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Lake Moraine&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.9876847&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 9.540345&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Spring Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>4.2733292&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.390167&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Hundred Acre Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.7782560&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>10.717276&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Alton Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.3703276&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 1.648332&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Keech Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.3256573&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.620277&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Long Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>6.3583580&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 1.627559&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Belleville Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.6931840&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>12.060618&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Watchaug Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.6567041&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 4.143319&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Secret Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.3313842&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 3.257404&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Waterman Reservoir&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.5020130&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 4.841056&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Little Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>3.8986228&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 5.089454&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Worden Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.1991928&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 3.766291&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Yawgoo Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.6438955&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>10.720460&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Meadow Brook Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.7137879&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 7.783712&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Tucker Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.4472523&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 8.306728&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Tiogue Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.5364363&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 1.884170&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Barber Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.9040899&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>12.100398&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Glen Rock Reservoir&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.1009091&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 1.094390&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Spring Green Pond&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.8868002&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 7.714214&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Flat River Reservoir&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.6196583&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 2.448664&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Fish Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.5325940&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>22.801353&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Oneida Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.8523354&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 8.736997&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Parkers Lake&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.7133898&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>10.382288&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Ashokan Reservoir West Basin&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.5265748&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 4.510984&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Cannonsville Reservoir&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>2.1684127&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td>20.311865&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Schoharie Reservoir&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>1.7706478&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 3.545304&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>NA&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>4.4832159&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 3.768159&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class= id='popup'><tr><td><\/td><th>gnis_name&emsp;<\/th><td>Pepacton Reservoir&emsp;<\/td><\/tr><tr><td><\/td><th>mean_secchi&emsp;<\/th><td>3.5957872&emsp;<\/td><\/tr><tr><td><\/td><th>mean_chl&emsp;<\/th><td> 5.861702&emsp;<\/td><\/tr><\/table><\/div>"],{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},[null,null,"Elfin Lake","Acton Lake","Spring Lake","Forest Lake","Sparkling Lake","McCarrons Lake","Upper Prior Lake","Danby Pond","Peltier Lake","Crystal Lake","Golden Lake","Lake Bavaria","Lake Minnetonka","Lower Prior Lake","Lake Pepin","Medicine Lake","Valentine Lake","Curtis Pond","Allequash Lake","Trout Lake","Crystal Lake","Big Muskellunge Lake","Cole Pond","Lake Carmi","Lake Wentworth","Forest Lake","Lake of the Ozarks","Stockton Lake","Lake Taneycomo","Table Rock Lake","Bull Shoals Lake",null,"Seneca Lake","Tuscarora Lake","Lake Moraine","Spring Lake","Hundred Acre Pond","Alton Pond","Keech Pond","Long Pond","Belleville Pond","Watchaug Pond","Secret Lake","Waterman Reservoir","Little Pond","Worden Pond","Yawgoo Pond","Meadow Brook Pond","Tucker Pond","Tiogue Lake","Barber Pond","Glen Rock Reservoir","Spring Green Pond","Flat River Reservoir","Fish Lake","Oneida Lake","Parkers Lake","Ashokan Reservoir West Basin","Cannonsville Reservoir","Schoharie Reservoir",null,"Pepacton Reservoir"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-93.718828,36.490608,-71.156964,46.251455,true,"Secchi disk transparency (m)","Zoom to Secchi disk transparency (m)","<strong> Secchi disk transparency (m) <\/strong>","bottomleft"]},{"method":"addLayersControl","args":["OpenStreetMap","Secchi disk transparency (m)",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#DEF5E5","#57C0AC","#3A7AA3","#3A3665","#0B0405"],"labels":["0 &ndash; 2","2 &ndash; 4","4 &ndash; 6","6 &ndash; 8","8 &ndash; 10"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"bin","title":"Secchi disk transparency (m)","extra":null,"layerId":null,"className":"info legend","group":"Secchi disk transparency (m)"}]}],"limits":{"lat":[36.490608,46.251455],"lng":[-93.718828,-71.156964]},"fitBounds":[36.490608,-93.718828,46.251455,-71.156964,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<p><span style="color: blue;">Yes, there appears to be a spatial pattern in Secchi disk transparency (m) for lakes with at least 200 observations. Based on the map above, lakes in the eastern states (e.g. New York, New Hampshire) generally have visibility of the Secchi disk at a deeper level than lakes in the western states (e.g. Minnesota, Missouri).</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lagos-analysis-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

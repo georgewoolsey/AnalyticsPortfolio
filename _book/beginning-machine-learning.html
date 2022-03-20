@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Beginning Machine Learning | Analytics Portfolio</title>
+  <meta name="description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Beginning Machine Learning | Analytics Portfolio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Beginning Machine Learning | Analytics Portfolio" />
+  
+  <meta name="twitter:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="George Woolsey" />
+
+
+<meta name="date" content="2022-03-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regression-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#this-book"><i class="fa fa-check"></i><b>1.1</b> This book<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Using R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#methods"><i class="fa fa-check"></i><b>2.1</b> Methods<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#site-description"><i class="fa fa-check"></i><b>2.1.1</b> Site Description<span></span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#data-download"><i class="fa fa-check"></i><b>2.1.2</b> Data Download<span></span></a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#static-data-plotter"><i class="fa fa-check"></i><b>2.1.3</b> Static Data Plotter<span></span></a></li>
+<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#interactive-data-plotter"><i class="fa fa-check"></i><b>2.1.4</b> Interactive Data Plotter<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#assignment"><i class="fa fa-check"></i><b>2.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#dygraph-example"><i class="fa fa-check"></i><b>2.2.1</b> DyGraph example<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#poudre-river-overview"><i class="fa fa-check"></i><b>2.2.2</b> Poudre River Overview<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="intro.html"><a href="intro.html#link-to-presentation-style-webpage"><i class="fa fa-check"></i><b>2.2.3</b> Link to presentation-style webpage<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html"><i class="fa fa-check"></i><b>3</b> Wildfire Recovery<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#read-data"><i class="fa fa-check"></i><b>3.1</b> Read Data<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#assignment-1"><i class="fa fa-check"></i><b>3.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-1"><i class="fa fa-check"></i><b>3.2.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-2"><i class="fa fa-check"></i><b>3.2.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-3"><i class="fa fa-check"></i><b>3.2.3</b> Question 3)<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-4"><i class="fa fa-check"></i><b>3.2.4</b> Question 4)<span></span></a></li>
+<li class="chapter" data-level="3.2.5" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#question-5"><i class="fa fa-check"></i><b>3.2.5</b> Question 5)<span></span></a></li>
+<li class="chapter" data-level="3.2.6" data-path="wildfire-recovery.html"><a href="wildfire-recovery.html#bonus-question-1"><i class="fa fa-check"></i><b>3.2.6</b> Bonus Question 1)<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html"><i class="fa fa-check"></i><b>4</b> Web Scraping and Functions<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#simple-web-scraping"><i class="fa fa-check"></i><b>4.1</b> Simple web scraping<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#reading-an-html"><i class="fa fa-check"></i><b>4.1.1</b> Reading an html<span></span></a></li>
+<li class="chapter" data-level="4.1.2" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#data-download-1"><i class="fa fa-check"></i><b>4.1.2</b> Data Download<span></span></a></li>
+<li class="chapter" data-level="4.1.3" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#data-read-in"><i class="fa fa-check"></i><b>4.1.3</b> Data read-in<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#assignment-2"><i class="fa fa-check"></i><b>4.2</b> Assignment:<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-1-1"><i class="fa fa-check"></i><b>4.2.1</b> Question 1<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-2-1"><i class="fa fa-check"></i><b>4.2.2</b> Question 2<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-3-1"><i class="fa fa-check"></i><b>4.2.3</b> Question 3<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-4-1"><i class="fa fa-check"></i><b>4.2.4</b> Question 4<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-5-1"><i class="fa fa-check"></i><b>4.2.5</b> Question 5<span></span></a></li>
+<li class="chapter" data-level="4.2.6" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#question-6"><i class="fa fa-check"></i><b>4.2.6</b> Question 6<span></span></a></li>
+<li class="chapter" data-level="4.2.7" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#bonus-question-1-1"><i class="fa fa-check"></i><b>4.2.7</b> Bonus Question 1<span></span></a></li>
+<li class="chapter" data-level="4.2.8" data-path="web-scraping-and-functions.html"><a href="web-scraping-and-functions.html#bonus-question-2"><i class="fa fa-check"></i><b>4.2.8</b> Bonus Question 2<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sp1.html"><a href="sp1.html"><i class="fa fa-check"></i><b>5</b> Spatial Analysis (part 1)<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sp1.html"><a href="sp1.html#lagos-analysis"><i class="fa fa-check"></i><b>5.1</b> LAGOS Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="sp1.html"><a href="sp1.html#loading-in-data"><i class="fa fa-check"></i><b>5.1.1</b> Loading in data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="sp1.html"><a href="sp1.html#assignment-3"><i class="fa fa-check"></i><b>5.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="sp1.html"><a href="sp1.html#question-1-2"><i class="fa fa-check"></i><b>5.2.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="sp1.html"><a href="sp1.html#question-2-2"><i class="fa fa-check"></i><b>5.2.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="sp1.html"><a href="sp1.html#question-3-2"><i class="fa fa-check"></i><b>5.2.3</b> Question 3)<span></span></a></li>
+<li class="chapter" data-level="5.2.4" data-path="sp1.html"><a href="sp1.html#question-4-2"><i class="fa fa-check"></i><b>5.2.4</b> Question 4)<span></span></a></li>
+<li class="chapter" data-level="5.2.5" data-path="sp1.html"><a href="sp1.html#question-5-2"><i class="fa fa-check"></i><b>5.2.5</b> Question 5)<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sp2.html"><a href="sp2.html"><i class="fa fa-check"></i><b>6</b> Spatial Analysis (part 2)<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sp2.html"><a href="sp2.html#lagos-analysis-1"><i class="fa fa-check"></i><b>6.1</b> LAGOS Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="sp2.html"><a href="sp2.html#loading-in-data-1"><i class="fa fa-check"></i><b>6.1.1</b> Loading in data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="sp2.html"><a href="sp2.html#assignment-4"><i class="fa fa-check"></i><b>6.2</b> Assignment<span></span></a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sp2.html"><a href="sp2.html#question-1-3"><i class="fa fa-check"></i><b>6.2.1</b> Question 1)<span></span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="sp2.html"><a href="sp2.html#question-2-3"><i class="fa fa-check"></i><b>6.2.2</b> Question 2)<span></span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="sp2.html"><a href="sp2.html#question-3-3"><i class="fa fa-check"></i><b>6.2.3</b> Question 3)<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-analysis.html"><a href="regression-analysis.html"><i class="fa fa-check"></i><b>7</b> Regression Analysis<span></span></a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="regression-analysis.html"><a href="regression-analysis.html#weather-data-analysis"><i class="fa fa-check"></i><b>7.0.1</b> Weather Data Analysis<span></span></a></li>
+<li class="chapter" data-level="7.0.2" data-path="regression-analysis.html"><a href="regression-analysis.html#temperature-trends"><i class="fa fa-check"></i><b>7.0.2</b> Temperature trends<span></span></a></li>
+<li class="chapter" data-level="7.0.3" data-path="regression-analysis.html"><a href="regression-analysis.html#assignment-5"><i class="fa fa-check"></i><b>7.0.3</b> Assignment<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html"><i class="fa fa-check"></i><b>8</b> Beginning Machine Learning<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#objective"><i class="fa fa-check"></i><b>8.1</b> Objective<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#data-read"><i class="fa fa-check"></i><b>8.1.1</b> Data read<span></span></a></li>
+<li class="chapter" data-level="8.1.2" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#spatial-autocorrelation-grouping"><i class="fa fa-check"></i><b>8.1.2</b> Spatial autocorrelation grouping<span></span></a></li>
+<li class="chapter" data-level="8.1.3" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#model-development"><i class="fa fa-check"></i><b>8.1.3</b> Model development<span></span></a></li>
+<li class="chapter" data-level="8.1.4" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#chl-a-model"><i class="fa fa-check"></i><b>8.1.4</b> Chl-a model<span></span></a></li>
+<li class="chapter" data-level="8.1.5" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#tss-model"><i class="fa fa-check"></i><b>8.1.5</b> TSS Model<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#q1"><i class="fa fa-check"></i><b>8.2</b> Q1)<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="beginning-machine-learning.html"><a href="beginning-machine-learning.html#q2"><i class="fa fa-check"></i><b>8.3</b> Q2)<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analytics Portfolio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="beginning-machine-learning" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Beginning Machine Learning<a href="beginning-machine-learning.html#beginning-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This analysis utilzes <strong>XGBoost</strong>, an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.</p>
+<p>A helpful introduction to utilizing XGBoost in R can be accessed <a href="https://xgboost.readthedocs.io/en/stable/R-package/xgboostPresentation.html">here</a>.</p>
+<div id="objective" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objective<a href="beginning-machine-learning.html#objective" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An old friend told me today about a term called <a href="https://sciencedryad.wordpress.com/2014/01/25/grad-student-descent/">“Grad student descent”</a> which is a
+play on words with the term gradient descent, an extremely common tool used to
+tune hyperparameters (and parameters) for machine learning models. Grad student
+descent then is when that method is simply having grad students search a parameter
+space manually in part to improve the model, and in part to learn how these
+algorithms work.</p>
+<p>Today we are trying to predict the concentrations of either chlorophyll a (<code>CHLA</code>)
+or total suspended sediment (<code>TSS</code>) in the Loire River France using satellite imagery.
+The grab sample data (someone grabbing water from a stream for analysis), comes
+from the French electricity agency who collects this data to meet their water
+quality standards.
+Basically the core idea here is that water color as captured in an image tells you
+something about what is in the water. If it’s green and bright (lots of light
+reflected from the water), then it may have a lot of algae (Chlorophyll a is a proxy
+for algal biomass). If it’s tan and bright, it may have lots of sediment. If it’s
+dark and blue it’s clear!</p>
+<p>This color information is captured in “bands” like red, blue, green etc… from
+the Landsat series of satellites, which have collected data over the world since
+the late 70s. For this analysis we are only using Landsat 5,7, and 8, so the
+data goes back to 1984.</p>
+<div id="data-read" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Data read<a href="beginning-machine-learning.html#data-read" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="beginning-machine-learning.html#cb84-1" aria-hidden="true" tabindex="-1"></a>wq_sr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/wq_sr.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb84-2"><a href="beginning-machine-learning.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date))</span></code></pre></div>
+</div>
+<div id="spatial-autocorrelation-grouping" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Spatial autocorrelation grouping<a href="beginning-machine-learning.html#spatial-autocorrelation-grouping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The code below utilizes a rudimentary technique for addressing spatial autocorrelation. For a more robust solution, the <a href="https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faq-how-can-i-detectaddress-spatial-autocorrelation-in-my-data/">UCLA Statistical Consulting Group</a> provides a helpful guide for addressing spatial autocorrelation. In spatial data, it is often the case that some or all outcome measures exhibit spatial autocorrelation. This occurs when the relative outcomes of two points is related to their distance. When analyzing spatial data, it is important to check for autocorrelation.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="beginning-machine-learning.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="do">## define group by spatial location</span></span>
+<span id="cb85-2"><a href="beginning-machine-learning.html#cb85-2" aria-hidden="true" tabindex="-1"></a>grp_wq_sr <span class="ot">&lt;-</span> wq_sr <span class="sc">%&gt;%</span> </span>
+<span id="cb85-3"><a href="beginning-machine-learning.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(site_no, long, lat) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-4"><a href="beginning-machine-learning.html#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(long, lat) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-5"><a href="beginning-machine-learning.html#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb85-6"><a href="beginning-machine-learning.html#cb85-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_rank =</span> <span class="fu">row_number</span>()<span class="sc">/</span><span class="fu">n</span>()</span>
+<span id="cb85-7"><a href="beginning-machine-learning.html#cb85-7" aria-hidden="true" tabindex="-1"></a>    , <span class="at">grp =</span> <span class="fu">case_when</span>(</span>
+<span id="cb85-8"><a href="beginning-machine-learning.html#cb85-8" aria-hidden="true" tabindex="-1"></a>        pct_rank <span class="sc">&lt;=</span> <span class="fl">0.25</span>   <span class="sc">~</span> <span class="st">&quot;1&quot;</span></span>
+<span id="cb85-9"><a href="beginning-machine-learning.html#cb85-9" aria-hidden="true" tabindex="-1"></a>        , pct_rank <span class="sc">&lt;=</span> <span class="fl">0.5</span>   <span class="sc">~</span> <span class="st">&quot;2&quot;</span></span>
+<span id="cb85-10"><a href="beginning-machine-learning.html#cb85-10" aria-hidden="true" tabindex="-1"></a>        , pct_rank <span class="sc">&lt;=</span> <span class="fl">0.75</span>   <span class="sc">~</span> <span class="st">&quot;3&quot;</span></span>
+<span id="cb85-11"><a href="beginning-machine-learning.html#cb85-11" aria-hidden="true" tabindex="-1"></a>        , <span class="cn">TRUE</span>   <span class="sc">~</span> <span class="st">&quot;4&quot;</span></span>
+<span id="cb85-12"><a href="beginning-machine-learning.html#cb85-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb85-13"><a href="beginning-machine-learning.html#cb85-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb85-14"><a href="beginning-machine-learning.html#cb85-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-15"><a href="beginning-machine-learning.html#cb85-15" aria-hidden="true" tabindex="-1"></a><span class="do">## quick plot of sample sites</span></span>
+<span id="cb85-16"><a href="beginning-machine-learning.html#cb85-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(grp_wq_sr, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat, <span class="at">color=</span>grp)) <span class="sc">+</span> </span>
+<span id="cb85-17"><a href="beginning-machine-learning.html#cb85-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb85-18"><a href="beginning-machine-learning.html#cb85-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb85-19"><a href="beginning-machine-learning.html#cb85-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Sample Site Locations&quot;</span></span>
+<span id="cb85-20"><a href="beginning-machine-learning.html#cb85-20" aria-hidden="true" tabindex="-1"></a>    , <span class="at">subtitle =</span> <span class="st">&quot;grouped locations to minimize spatial autocorrelation in sampling&quot;</span></span>
+<span id="cb85-21"><a href="beginning-machine-learning.html#cb85-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb85-22"><a href="beginning-machine-learning.html#cb85-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb85-23"><a href="beginning-machine-learning.html#cb85-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="768" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="beginning-machine-learning.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join to main data</span></span>
+<span id="cb86-2"><a href="beginning-machine-learning.html#cb86-2" aria-hidden="true" tabindex="-1"></a>wq_sr <span class="ot">&lt;-</span> wq_sr <span class="sc">%&gt;%</span> </span>
+<span id="cb86-3"><a href="beginning-machine-learning.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(grp_wq_sr <span class="sc">%&gt;%</span> <span class="fu">select</span>(site_no, grp), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;site_no&quot;</span><span class="ot">=</span><span class="st">&quot;site_no&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-4"><a href="beginning-machine-learning.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(grp, site_no, date) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-5"><a href="beginning-machine-learning.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grp)</span></code></pre></div>
+</div>
+<div id="model-development" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Model development<a href="beginning-machine-learning.html#model-development" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is the fiddly bit. The goal? Tune hyperparameters to get the lowest
+RMSE and the best Measured/Predicted fit (points close to the red line).</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="beginning-machine-learning.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="do">## A vector that contains all the columns I want to keep. </span></span>
+<span id="cb87-2"><a href="beginning-machine-learning.html#cb87-2" aria-hidden="true" tabindex="-1"></a>predictors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb87-3"><a href="beginning-machine-learning.html#cb87-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;azimuth&quot;</span></span>
+<span id="cb87-4"><a href="beginning-machine-learning.html#cb87-4" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;blue&quot;</span></span>
+<span id="cb87-5"><a href="beginning-machine-learning.html#cb87-5" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;green&quot;</span></span>
+<span id="cb87-6"><a href="beginning-machine-learning.html#cb87-6" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;nir&quot;</span> </span>
+<span id="cb87-7"><a href="beginning-machine-learning.html#cb87-7" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;red&quot;</span></span>
+<span id="cb87-8"><a href="beginning-machine-learning.html#cb87-8" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;swir1&quot;</span></span>
+<span id="cb87-9"><a href="beginning-machine-learning.html#cb87-9" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;swir2&quot;</span></span>
+<span id="cb87-10"><a href="beginning-machine-learning.html#cb87-10" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;zenith&quot;</span>  </span>
+<span id="cb87-11"><a href="beginning-machine-learning.html#cb87-11" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;NR&quot;</span> </span>
+<span id="cb87-12"><a href="beginning-machine-learning.html#cb87-12" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;BR&quot;</span> </span>
+<span id="cb87-13"><a href="beginning-machine-learning.html#cb87-13" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;GR&quot;</span> </span>
+<span id="cb87-14"><a href="beginning-machine-learning.html#cb87-14" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;SR&quot;</span> </span>
+<span id="cb87-15"><a href="beginning-machine-learning.html#cb87-15" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;BG&quot;</span> </span>
+<span id="cb87-16"><a href="beginning-machine-learning.html#cb87-16" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;BN&quot;</span></span>
+<span id="cb87-17"><a href="beginning-machine-learning.html#cb87-17" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;BS&quot;</span> </span>
+<span id="cb87-18"><a href="beginning-machine-learning.html#cb87-18" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;GS&quot;</span> </span>
+<span id="cb87-19"><a href="beginning-machine-learning.html#cb87-19" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;GN&quot;</span> </span>
+<span id="cb87-20"><a href="beginning-machine-learning.html#cb87-20" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;ndvi&quot;</span></span>
+<span id="cb87-21"><a href="beginning-machine-learning.html#cb87-21" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;ndwi&quot;</span></span>
+<span id="cb87-22"><a href="beginning-machine-learning.html#cb87-22" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&#39;fai&#39;</span></span>
+<span id="cb87-23"><a href="beginning-machine-learning.html#cb87-23" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;hillshade&quot;</span></span>
+<span id="cb87-24"><a href="beginning-machine-learning.html#cb87-24" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;hue&quot;</span></span>
+<span id="cb87-25"><a href="beginning-machine-learning.html#cb87-25" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;bright_tot&quot;</span></span>
+<span id="cb87-26"><a href="beginning-machine-learning.html#cb87-26" aria-hidden="true" tabindex="-1"></a>                , <span class="st">&quot;bright&quot;</span></span>
+<span id="cb87-27"><a href="beginning-machine-learning.html#cb87-27" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb87-28"><a href="beginning-machine-learning.html#cb87-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-29"><a href="beginning-machine-learning.html#cb87-29" aria-hidden="true" tabindex="-1"></a><span class="co">#function to run model </span></span>
+<span id="cb87-30"><a href="beginning-machine-learning.html#cb87-30" aria-hidden="true" tabindex="-1"></a>booster <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">df =</span> wq_sr, <span class="at">pred=</span><span class="st">&#39;CHLA&#39;</span>, <span class="at">title=</span><span class="st">&#39;Chlorophyll a&#39;</span>, <span class="at">features =</span> predictors){</span>
+<span id="cb87-31"><a href="beginning-machine-learning.html#cb87-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-32"><a href="beginning-machine-learning.html#cb87-32" aria-hidden="true" tabindex="-1"></a>  non_nas <span class="ot">&lt;-</span> (<span class="sc">!</span><span class="fu">is.na</span>(df[,pred]))</span>
+<span id="cb87-33"><a href="beginning-machine-learning.html#cb87-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-34"><a href="beginning-machine-learning.html#cb87-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">#remove nas</span></span>
+<span id="cb87-35"><a href="beginning-machine-learning.html#cb87-35" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">=</span> df[non_nas,]</span>
+<span id="cb87-36"><a href="beginning-machine-learning.html#cb87-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-37"><a href="beginning-machine-learning.html#cb87-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Sample 60% of the data using groups defined above</span></span>
+<span id="cb87-38"><a href="beginning-machine-learning.html#cb87-38" aria-hidden="true" tabindex="-1"></a>  train <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb87-39"><a href="beginning-machine-learning.html#cb87-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(grp) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-40"><a href="beginning-machine-learning.html#cb87-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_sample</span>(<span class="at">prop =</span> .<span class="dv">6</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-41"><a href="beginning-machine-learning.html#cb87-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb87-42"><a href="beginning-machine-learning.html#cb87-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-43"><a href="beginning-machine-learning.html#cb87-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Keep only data that is not in train</span></span>
+<span id="cb87-44"><a href="beginning-machine-learning.html#cb87-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">#How could we make this safer (spatiotemporal robustness)</span></span>
+<span id="cb87-45"><a href="beginning-machine-learning.html#cb87-45" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb87-46"><a href="beginning-machine-learning.html#cb87-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anti_join</span>(., train, <span class="at">by=</span><span class="st">&#39;index&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-47"><a href="beginning-machine-learning.html#cb87-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb87-48"><a href="beginning-machine-learning.html#cb87-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-49"><a href="beginning-machine-learning.html#cb87-49" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-50"><a href="beginning-machine-learning.html#cb87-50" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Actual boosting model</span></span>
+<span id="cb87-51"><a href="beginning-machine-learning.html#cb87-51" aria-hidden="true" tabindex="-1"></a>  ag_mod <span class="ot">&lt;-</span> <span class="fu">xgboost</span>(<span class="at">data=</span>train <span class="sc">%&gt;%</span></span>
+<span id="cb87-52"><a href="beginning-machine-learning.html#cb87-52" aria-hidden="true" tabindex="-1"></a>                    dplyr<span class="sc">::</span><span class="fu">select</span>(features) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-53"><a href="beginning-machine-learning.html#cb87-53" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">as.matrix</span>(.),</span>
+<span id="cb87-54"><a href="beginning-machine-learning.html#cb87-54" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> train <span class="sc">%&gt;%</span> <span class="fu">pull</span>(pred) <span class="sc">%&gt;%</span> <span class="fu">log10</span>(.),</span>
+<span id="cb87-55"><a href="beginning-machine-learning.html#cb87-55" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrounds =</span> <span class="dv">400</span>,</span>
+<span id="cb87-56"><a href="beginning-machine-learning.html#cb87-56" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nthread =</span> <span class="dv">4</span>,</span>
+<span id="cb87-57"><a href="beginning-machine-learning.html#cb87-57" aria-hidden="true" tabindex="-1"></a>                  <span class="at">eta =</span> <span class="fl">0.1</span>,</span>
+<span id="cb87-58"><a href="beginning-machine-learning.html#cb87-58" aria-hidden="true" tabindex="-1"></a>                  <span class="at">gamma =</span> <span class="fl">0.0</span>,</span>
+<span id="cb87-59"><a href="beginning-machine-learning.html#cb87-59" aria-hidden="true" tabindex="-1"></a>                  <span class="at">max_depth =</span> <span class="dv">4</span>,</span>
+<span id="cb87-60"><a href="beginning-machine-learning.html#cb87-60" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min_child_weight =</span> <span class="dv">1</span>,</span>
+<span id="cb87-61"><a href="beginning-machine-learning.html#cb87-61" aria-hidden="true" tabindex="-1"></a>                  <span class="at">subsample =</span> <span class="dv">1</span>,</span>
+<span id="cb87-62"><a href="beginning-machine-learning.html#cb87-62" aria-hidden="true" tabindex="-1"></a>                  <span class="at">colsample_bytree =</span> <span class="dv">1</span>,</span>
+<span id="cb87-63"><a href="beginning-machine-learning.html#cb87-63" aria-hidden="true" tabindex="-1"></a>                  <span class="at">lambda =</span> <span class="dv">4</span>,</span>
+<span id="cb87-64"><a href="beginning-machine-learning.html#cb87-64" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> <span class="fl">0.1</span>,</span>
+<span id="cb87-65"><a href="beginning-machine-learning.html#cb87-65" aria-hidden="true" tabindex="-1"></a>                  <span class="at">num_parallel_tree =</span> <span class="dv">1</span>,</span>
+<span id="cb87-66"><a href="beginning-machine-learning.html#cb87-66" aria-hidden="true" tabindex="-1"></a>                  <span class="at">print_every_n =</span> <span class="dv">200</span></span>
+<span id="cb87-67"><a href="beginning-machine-learning.html#cb87-67" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb87-68"><a href="beginning-machine-learning.html#cb87-68" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-69"><a href="beginning-machine-learning.html#cb87-69" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Tune ntree, k, numcut, bands that you use, etc...</span></span>
+<span id="cb87-70"><a href="beginning-machine-learning.html#cb87-70" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-71"><a href="beginning-machine-learning.html#cb87-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">#apply predictions. </span></span>
+<span id="cb87-72"><a href="beginning-machine-learning.html#cb87-72" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span> </span>
+<span id="cb87-73"><a href="beginning-machine-learning.html#cb87-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bpred =</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">predict</span>(ag_mod, test <span class="sc">%&gt;%</span></span>
+<span id="cb87-74"><a href="beginning-machine-learning.html#cb87-74" aria-hidden="true" tabindex="-1"></a>                               dplyr<span class="sc">::</span><span class="fu">select</span>(features) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-75"><a href="beginning-machine-learning.html#cb87-75" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">as.matrix</span>(.)))</span>
+<span id="cb87-76"><a href="beginning-machine-learning.html#cb87-76" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Optional for log</span></span>
+<span id="cb87-77"><a href="beginning-machine-learning.html#cb87-77" aria-hidden="true" tabindex="-1"></a>  <span class="co">#test[,pred] = 10^test[,pred]</span></span>
+<span id="cb87-78"><a href="beginning-machine-learning.html#cb87-78" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-79"><a href="beginning-machine-learning.html#cb87-79" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Remove NAs</span></span>
+<span id="cb87-80"><a href="beginning-machine-learning.html#cb87-80" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">&lt;-</span> test <span class="sc">%&gt;%</span></span>
+<span id="cb87-81"><a href="beginning-machine-learning.html#cb87-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pred)) <span class="sc">%&gt;%</span></span>
+<span id="cb87-82"><a href="beginning-machine-learning.html#cb87-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.frame</span>()</span>
+<span id="cb87-83"><a href="beginning-machine-learning.html#cb87-83" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-84"><a href="beginning-machine-learning.html#cb87-84" aria-hidden="true" tabindex="-1"></a>  error <span class="ot">&lt;-</span> </span>
+<span id="cb87-85"><a href="beginning-machine-learning.html#cb87-85" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">rmse=</span>Metrics<span class="sc">::</span><span class="fu">rmse</span>(test<span class="sc">$</span>bpred,test[,pred]),</span>
+<span id="cb87-86"><a href="beginning-machine-learning.html#cb87-86" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mdae=</span>Metrics<span class="sc">::</span><span class="fu">mdae</span>(test<span class="sc">$</span>bpred,test[,pred]),</span>
+<span id="cb87-87"><a href="beginning-machine-learning.html#cb87-87" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mape=</span>Metrics<span class="sc">::</span><span class="fu">mape</span>(test<span class="sc">$</span>bpred,test[,pred]),</span>
+<span id="cb87-88"><a href="beginning-machine-learning.html#cb87-88" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bias=</span>Metrics<span class="sc">::</span><span class="fu">bias</span>(test<span class="sc">$</span>bpred,test[,pred]))</span>
+<span id="cb87-89"><a href="beginning-machine-learning.html#cb87-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-90"><a href="beginning-machine-learning.html#cb87-90" aria-hidden="true" tabindex="-1"></a>  <span class="do">## plot results</span></span>
+<span id="cb87-91"><a href="beginning-machine-learning.html#cb87-91" aria-hidden="true" tabindex="-1"></a>  g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(test,</span>
+<span id="cb87-92"><a href="beginning-machine-learning.html#cb87-92" aria-hidden="true" tabindex="-1"></a>           <span class="fu">aes_string</span>(<span class="at">x=</span>pred,<span class="at">y=</span><span class="st">&#39;bpred&#39;</span>,<span class="at">color=</span><span class="st">&#39;year&#39;</span>))  <span class="sc">+</span></span>
+<span id="cb87-93"><a href="beginning-machine-learning.html#cb87-93" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb87-94"><a href="beginning-machine-learning.html#cb87-94" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_abline</span>(<span class="at">intercept=</span><span class="dv">0</span>,<span class="at">slope=</span><span class="dv">1</span>,<span class="at">color=</span><span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb87-95"><a href="beginning-machine-learning.html#cb87-95" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&#39;Measured&#39;</span>,<span class="at">y=</span><span class="st">&#39;Predicted&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb87-96"><a href="beginning-machine-learning.html#cb87-96" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb87-97"><a href="beginning-machine-learning.html#cb87-97" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span> </span>
+<span id="cb87-98"><a href="beginning-machine-learning.html#cb87-98" aria-hidden="true" tabindex="-1"></a>       <span class="fu">scale_x_log10</span>(<span class="at">breaks =</span> <span class="fu">trans_breaks</span>(<span class="st">&quot;log10&quot;</span>, <span class="cf">function</span>(x) <span class="dv">10</span><span class="sc">^</span>x),</span>
+<span id="cb87-99"><a href="beginning-machine-learning.html#cb87-99" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">trans_format</span>(<span class="st">&quot;log10&quot;</span>, <span class="fu">math_format</span>(<span class="dv">10</span><span class="sc">^</span>.x)))  <span class="sc">+</span></span>
+<span id="cb87-100"><a href="beginning-machine-learning.html#cb87-100" aria-hidden="true" tabindex="-1"></a>         <span class="fu">scale_y_log10</span>(<span class="at">breaks =</span> <span class="fu">trans_breaks</span>(<span class="st">&quot;log10&quot;</span>, <span class="cf">function</span>(x) <span class="dv">10</span><span class="sc">^</span>x),</span>
+<span id="cb87-101"><a href="beginning-machine-learning.html#cb87-101" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="fu">trans_format</span>(<span class="st">&quot;log10&quot;</span>, <span class="fu">math_format</span>(<span class="dv">10</span><span class="sc">^</span>.x))) <span class="sc">+</span> </span>
+<span id="cb87-102"><a href="beginning-machine-learning.html#cb87-102" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(title)</span>
+<span id="cb87-103"><a href="beginning-machine-learning.html#cb87-103" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-104"><a href="beginning-machine-learning.html#cb87-104" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-105"><a href="beginning-machine-learning.html#cb87-105" aria-hidden="true" tabindex="-1"></a>  <span class="do">## returns a list of the plot (g1), the error metric (error), and the </span></span>
+<span id="cb87-106"><a href="beginning-machine-learning.html#cb87-106" aria-hidden="true" tabindex="-1"></a>  <span class="do">## model (ag_mod)</span></span>
+<span id="cb87-107"><a href="beginning-machine-learning.html#cb87-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(g1,error,ag_mod))</span>
+<span id="cb87-108"><a href="beginning-machine-learning.html#cb87-108" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="chl-a-model" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Chl-a model<a href="beginning-machine-learning.html#chl-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="beginning-machine-learning.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">81640</span>) <span class="do">### Makes the work reproducible, but you can hack this!</span></span>
+<span id="cb88-2"><a href="beginning-machine-learning.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="do">## call model function</span></span>
+<span id="cb88-3"><a href="beginning-machine-learning.html#cb88-3" aria-hidden="true" tabindex="-1"></a>chl_boost <span class="ot">&lt;-</span> <span class="fu">booster</span>(<span class="at">df =</span> wq_sr)</span></code></pre></div>
+<div id="chl-a-model-measuredpredicted-plot" class="section level4 hasAnchor" number="8.1.4.1">
+<h4><span class="header-section-number">8.1.4.1</span> Chl-a Model Measured/Predicted Plot<a href="beginning-machine-learning.html#chl-a-model-measuredpredicted-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="beginning-machine-learning.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot measured vs predicted</span></span>
+<span id="cb89-2"><a href="beginning-machine-learning.html#cb89-2" aria-hidden="true" tabindex="-1"></a>chl_boost[[<span class="dv">1</span>]]</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="768" /></p>
+</div>
+<div id="chl-a-error-metrics" class="section level4 hasAnchor" number="8.1.4.2">
+<h4><span class="header-section-number">8.1.4.2</span> Chl-a Error Metrics<a href="beginning-machine-learning.html#chl-a-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="beginning-machine-learning.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">## view error metrics</span></span>
+<span id="cb90-2"><a href="beginning-machine-learning.html#cb90-2" aria-hidden="true" tabindex="-1"></a>chl_boost[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##    rmse  mdae  mape  bias
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  27.3  5.63  1.15 -6.67</code></pre>
+</div>
+</div>
+<div id="tss-model" class="section level3 hasAnchor" number="8.1.5">
+<h3><span class="header-section-number">8.1.5</span> TSS Model<a href="beginning-machine-learning.html#tss-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="beginning-machine-learning.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="do">## total suspended solids model</span></span>
+<span id="cb92-2"><a href="beginning-machine-learning.html#cb92-2" aria-hidden="true" tabindex="-1"></a>tss_boost <span class="ot">&lt;-</span> <span class="fu">booster</span>(<span class="at">df =</span> wq_sr, <span class="at">pred =</span> <span class="st">&quot;TSS&quot;</span>, <span class="at">title=</span><span class="st">&quot;Total suspended solids (TSS)&quot;</span>, <span class="at">features =</span> predictors)</span></code></pre></div>
+<div id="tss-plot" class="section level4 hasAnchor" number="8.1.5.1">
+<h4><span class="header-section-number">8.1.5.1</span> TSS plot<a href="beginning-machine-learning.html#tss-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="beginning-machine-learning.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot TSS measured vs predicted</span></span>
+<span id="cb93-2"><a href="beginning-machine-learning.html#cb93-2" aria-hidden="true" tabindex="-1"></a>tss_boost[[<span class="dv">1</span>]]</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="768" /></p>
+</div>
+<div id="tss-evaluation" class="section level4 hasAnchor" number="8.1.5.2">
+<h4><span class="header-section-number">8.1.5.2</span> TSS Evaluation<a href="beginning-machine-learning.html#tss-evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="beginning-machine-learning.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="do">## view error metrics</span></span>
+<span id="cb94-2"><a href="beginning-machine-learning.html#cb94-2" aria-hidden="true" tabindex="-1"></a>tss_boost[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##    rmse  mdae  mape  bias
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  97.4  5.11 0.628 -12.4</code></pre>
+</div>
+</div>
+</div>
+<div id="q1" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Q1)<a href="beginning-machine-learning.html#q1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is the best CHLA RMSE you could get after 50 minutes of fiddling?</p>
+<p><span style="color: blue;">After 50 minutes of fiddling with the <code>xgboost</code> parameters, the best RMSE achieved for predicting CHLA was <strong>27.34</strong>.</span></p>
+</div>
+<div id="q2" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Q2)<a href="beginning-machine-learning.html#q2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is the best TSS RMSE you could get after 50 minutes of fiddling?</p>
+<p><span style="color: blue;">After 50 minutes of fiddling with the <code>xgboost</code> parameters, the best RMSE achieved for predicting TSS was <strong>97.38</strong>.</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

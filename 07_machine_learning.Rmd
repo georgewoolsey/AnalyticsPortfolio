@@ -1,19 +1,10 @@
----
-title: "Loire River Graduate Student Descent"
-author: "Matthew Ross | Assignment completed by: George Woolsey"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
-    # code_folding: hide
-editor_options: 
-  chunk_output_type: console
-knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = file.path(dirname(inputFile), 'index.html')) })
----
+# Beginning Machine Learning
 
-```{r setup, include=FALSE, warning=F, message=F}
+This analysis utilzes **XGBoost**, an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way. 
 
+A helpful introduction to utilizing XGBoost in R can be accessed [here](https://xgboost.readthedocs.io/en/stable/R-package/xgboostPresentation.html).
+
+```{r, include=FALSE, warning=F, message=F}
 library(tidyverse)
 library(lubridate)
 library(viridis)
@@ -21,13 +12,11 @@ library(RColorBrewer)
 library(scales)
 library(ggthemes)
 library(xgboost)
-library(sf)
-library(mapview)
 
-# https://towardsdatascience.com/xgboost-fine-tune-and-optimize-your-model-23d996fab663
+## https://towardsdatascience.com/xgboost-fine-tune-and-optimize-your-model-23d996fab663
 ```
 
-# Intro
+## Objective
 
 An old friend told me today about a term called ["Grad student descent"](https://sciencedryad.wordpress.com/2014/01/25/grad-student-descent/) which is a 
 play on words with the term gradient descent, an extremely common tool used to 
@@ -52,8 +41,7 @@ the Landsat series of satellites, which have collected data over the world since
 the late 70s. For this analysis we are only using Landsat 5,7, and 8, so the
 data goes back to 1984. 
 
-
-## Data read
+### Data read
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
 wq_sr <- read_csv('data/wq_sr.csv') %>%
@@ -63,8 +51,11 @@ wq_sr <- read_csv('data/wq_sr.csv') %>%
 
 ## Spatial autocorrelation grouping
 
+The code below utilizes a rudimentary technique for addressing spatial autocorrelation. For a more robust solution, the [UCLA Statistical Consulting Group](https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faq-how-can-i-detectaddress-spatial-autocorrelation-in-my-data/) provides a helpful guide for addressing spatial autocorrelation. In spatial data, it is often the case that some or all outcome measures exhibit spatial autocorrelation. This occurs when the relative outcomes of two points is related to their distance.  When analyzing spatial data, it is important to check for autocorrelation.
+
+
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# define group by spatial location
+## define group by spatial location
 grp_wq_sr <- wq_sr %>% 
   distinct(site_no, long, lat) %>% 
   arrange(long, lat) %>% 
@@ -78,7 +69,7 @@ grp_wq_sr <- wq_sr %>%
     )
   )
 
-# quick plot
+## quick plot of sample sites
 ggplot(grp_wq_sr, aes(x=long, y=lat, color=grp)) + 
   geom_point() +
   labs(
@@ -88,7 +79,7 @@ ggplot(grp_wq_sr, aes(x=long, y=lat, color=grp)) +
   theme_few() +
   scale_color_viridis(discrete = TRUE)
 
-# join to main data
+## join to main data
 wq_sr <- wq_sr %>% 
   inner_join(grp_wq_sr %>% select(site_no, grp), by = c("site_no"="site_no")) %>% 
   arrange(grp, site_no, date) %>% 
@@ -96,16 +87,13 @@ wq_sr <- wq_sr %>%
 
 ```
 
-
 ## Model development
-
 
 This is the fiddly bit. The goal? Tune hyperparameters to get the lowest
 RMSE and the best Measured/Predicted fit (points close to the red line). 
 
-
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# A vector that contains all the columns I want to keep. 
+## A vector that contains all the columns I want to keep. 
 predictors <- c(
                 "azimuth"
                 , "blue"
@@ -141,7 +129,7 @@ booster <- function(df = wq_sr, pred='CHLA', title='Chlorophyll a', features = p
   #remove nas
   df = df[non_nas,]
   
-  #Sample 60% of the data. 
+  #Sample 60% of the data using groups defined above
   train <- df %>%
     group_by(grp) %>% 
     slice_sample(prop = .6) %>% 
@@ -154,7 +142,7 @@ booster <- function(df = wq_sr, pred='CHLA', title='Chlorophyll a', features = p
     ungroup()
   
   
-  # Actual boosting model
+  ## Actual boosting model
   ag_mod <- xgboost(data=train %>%
                     dplyr::select(features) %>% 
                       as.matrix(.),
@@ -194,7 +182,7 @@ booster <- function(df = wq_sr, pred='CHLA', title='Chlorophyll a', features = p
                        mape=Metrics::mape(test$bpred,test[,pred]),
                        bias=Metrics::bias(test$bpred,test[,pred]))
 
-  # plot results
+  ## plot results
   g1 <- ggplot(test,
            aes_string(x=pred,y='bpred',color='year'))  +
       geom_point() + 
@@ -209,21 +197,19 @@ booster <- function(df = wq_sr, pred='CHLA', title='Chlorophyll a', features = p
     ggtitle(title)
   
   
-  # returns a list of the plot (g1), the error metric (error), and the 
-  # model (ag_mod)
+  ## returns a list of the plot (g1), the error metric (error), and the 
+  ## model (ag_mod)
   return(list(g1,error,ag_mod))
 }
 
 ```
 
-
-
-## Chl-a model
+### Chl-a model
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
 
-set.seed(81640) ## Makes the work reproducible, but you can hack this!
-# call model function
+set.seed(81640) ### Makes the work reproducible, but you can hack this!
+## call model function
 chl_boost <- booster(df = wq_sr)
 
 
@@ -233,33 +219,29 @@ chl_boost <- booster(df = wq_sr)
 ### Chl-a Model Measured/Predicted Plot
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
+## plot measured vs predicted
 chl_boost[[1]]
-
 ```
 
 
 ### Chl-a Error Metrics
-
-
-```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
-# try to get RMSE below 20. that would be great.
+```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
+## view error metrics
 chl_boost[[2]]
 ```
 
 
-## TSS Model
+### TSS Model
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
+## total suspended solids model
 tss_boost <- booster(df = wq_sr, pred = "TSS", title="Total suspended solids (TSS)", features = predictors)
-
 ```
 
-
-
-### TSS plot
-
+#### TSS plot
 
 ```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
+## plot TSS measured vs predicted
 tss_boost[[1]]
 
 ```
@@ -267,24 +249,20 @@ tss_boost[[1]]
 
 ### TSS Evaluation
 
-```{r, warning=F, message=F, results='hide', fig.width = 8, fig.height = 5}
+```{r, warning=F, message=F, fig.width = 8, fig.height = 5}
+## view error metrics
 tss_boost[[2]]
 
 ```
 
+## Assignment
 
-
-# Q1) 
+### 1) 
 What is the best CHLA RMSE you could get after 50 minutes of fiddling? 
 
 <span style="color: blue;">After 50 minutes of fiddling with the `xgboost` parameters, the best RMSE achieved for predicting CHLA was **`r round(chl_boost[[2]][[1]], 2)`**.</span>
 
-
-# Q2) 
+### 2) 
 What is the best TSS RMSE you could get after 50 minutes of fiddling?
 
 <span style="color: blue;">After 50 minutes of fiddling with the `xgboost` parameters, the best RMSE achieved for predicting TSS was **`r round(tss_boost[[2]][[1]], 2)`**.</span>
-
-
-
-
