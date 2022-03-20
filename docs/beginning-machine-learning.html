@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Beginning Machine Learning | Analytics Portfolio</title>
+  <title>Chapter 8 Beginning Machine Learning | Analytics Portfolio</title>
   <meta name="description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Beginning Machine Learning | Analytics Portfolio" />
+  <meta property="og:title" content="Chapter 8 Beginning Machine Learning | Analytics Portfolio" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Beginning Machine Learning | Analytics Portfolio" />
+  <meta name="twitter:title" content="Chapter 8 Beginning Machine Learning | Analytics Portfolio" />
   
   <meta name="twitter:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
   
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="beginning-machine-learning" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">8</span> Beginning Machine Learning<a href="beginning-machine-learning.html#beginning-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapter 8</span> Beginning Machine Learning<a href="beginning-machine-learning.html#beginning-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This analysis utilzes <strong>XGBoost</strong>, an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.</p>
 <p>A helpful introduction to utilizing XGBoost in R can be accessed <a href="https://xgboost.readthedocs.io/en/stable/R-package/xgboostPresentation.html">here</a>.</p>
 <div id="objective" class="section level2 hasAnchor" number="8.1">
@@ -338,7 +338,7 @@ data goes back to 1984.</p>
 <span id="cb85-21"><a href="beginning-machine-learning.html#cb85-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb85-22"><a href="beginning-machine-learning.html#cb85-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
 <span id="cb85-23"><a href="beginning-machine-learning.html#cb85-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-78-1.png" width="768" /></p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="beginning-machine-learning.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">## join to main data</span></span>
 <span id="cb86-2"><a href="beginning-machine-learning.html#cb86-2" aria-hidden="true" tabindex="-1"></a>wq_sr <span class="ot">&lt;-</span> wq_sr <span class="sc">%&gt;%</span> </span>
 <span id="cb86-3"><a href="beginning-machine-learning.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(grp_wq_sr <span class="sc">%&gt;%</span> <span class="fu">select</span>(site_no, grp), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;site_no&quot;</span><span class="ot">=</span><span class="st">&quot;site_no&quot;</span>)) <span class="sc">%&gt;%</span> </span>
@@ -467,7 +467,7 @@ RMSE and the best Measured/Predicted fit (points close to the red line).</p>
 <h3><span class="header-section-number">8.3.2</span> Chl-a Model Measured/Predicted Plot<a href="beginning-machine-learning.html#chl-a-model-measuredpredicted-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="beginning-machine-learning.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot measured vs predicted</span></span>
 <span id="cb89-2"><a href="beginning-machine-learning.html#cb89-2" aria-hidden="true" tabindex="-1"></a>chl_boost[[<span class="dv">1</span>]]</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-81-1.png" width="768" /></p>
 </div>
 <div id="chl-a-error-metrics" class="section level3 hasAnchor" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> Chl-a Error Metrics<a href="beginning-machine-learning.html#chl-a-error-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -486,7 +486,7 @@ RMSE and the best Measured/Predicted fit (points close to the red line).</p>
 <h4><span class="header-section-number">8.3.4.1</span> TSS plot<a href="beginning-machine-learning.html#tss-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="beginning-machine-learning.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="do">## plot TSS measured vs predicted</span></span>
 <span id="cb93-2"><a href="beginning-machine-learning.html#cb93-2" aria-hidden="true" tabindex="-1"></a>tss_boost[[<span class="dv">1</span>]]</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-84-1.png" width="768" /></p>
 </div>
 </div>
 <div id="tss-evaluation" class="section level3 hasAnchor" number="8.3.5">

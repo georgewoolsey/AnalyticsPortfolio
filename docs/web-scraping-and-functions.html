@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Web Scraping and Functions | Analytics Portfolio</title>
+  <title>Chapter 4 Web Scraping and Functions | Analytics Portfolio</title>
   <meta name="description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Web Scraping and Functions | Analytics Portfolio" />
+  <meta property="og:title" content="Chapter 4 Web Scraping and Functions | Analytics Portfolio" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Web Scraping and Functions | Analytics Portfolio" />
+  <meta name="twitter:title" content="Chapter 4 Web Scraping and Functions | Analytics Portfolio" />
   
   <meta name="twitter:description" content="Using the bookdown package to write a book of analytics projects. The output format for this example is bookdown::gitbook." />
   
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="web-scraping-and-functions" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Web Scraping and Functions<a href="web-scraping-and-functions.html#web-scraping-and-functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapter 4</span> Web Scraping and Functions<a href="web-scraping-and-functions.html#web-scraping-and-functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="simple-web-scraping" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Simple web scraping<a href="web-scraping-and-functions.html#simple-web-scraping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R can read html using either <strong>rvest</strong>, <strong>xml</strong>, or <strong>xml2</strong> packages. Here we are going to navigate to the Center for Snow and Avalance Studies <a href="https://snowstudies.org/archived-data/">Website</a> and read a table in. This table contains links to data we want to programatically download for three sites. We don’t know much about these sites, but they contain incredibly rich snow, temperature, and precipitation data.</p>
@@ -385,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-7"><a href="web-scraping-and-functions.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb20-8"><a href="web-scraping-and-functions.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_few</span>() <span class="sc">+</span> </span>
 <span id="cb20-9"><a href="web-scraping-and-functions.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">scale_color_few</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -517,7 +517,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-30"><a href="web-scraping-and-functions.html#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-31"><a href="web-scraping-and-functions.html#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="do">## plot with full data</span></span>
 <span id="cb27-32"><a href="web-scraping-and-functions.html#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="fu">my_line_graph</span>(metoc_site_year)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-28-1.png" width="768" /></p>
 <p><span style="color: blue;">Looking at a count of the records by year reveals that the first and last year of the data do not include a full year of data. As this is hourly data, a full year of data should have 365*24 = 8,760 records (8,784 records on leap year).</span></p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="web-scraping-and-functions.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="do">## investigate what is happening in 2003 by looking at record counts</span></span>
 <span id="cb28-2"><a href="web-scraping-and-functions.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(metoc_site_year, <span class="fu">aes</span>(<span class="at">x=</span> <span class="fu">as.character</span>(year), <span class="at">y=</span>cnt, <span class="at">fill =</span> site)) <span class="sc">+</span> </span>
@@ -537,11 +537,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-16"><a href="web-scraping-and-functions.html#cb28-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span></span>
 <span id="cb28-17"><a href="web-scraping-and-functions.html#cb28-17" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.2</span>)</span>
 <span id="cb28-18"><a href="web-scraping-and-functions.html#cb28-18" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-29-1.png" width="768" /></p>
 <p><span style="color: blue;">We can filter out yearly records that have incomplete data and plot the average hourly temperature by year again.</span></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="web-scraping-and-functions.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">## line graph of temp by year for each site filtered for complete data</span></span>
 <span id="cb29-2"><a href="web-scraping-and-functions.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_line_graph</span>(metoc_site_year <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cnt <span class="sc">&gt;=</span> <span class="dv">8760</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-30-1.png" width="768" /></p>
 </div>
 <div id="question-6" class="section level3 hasAnchor" number="4.2.6">
 <h3><span class="header-section-number">4.2.6</span> Question 6<a href="web-scraping-and-functions.html#question-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -585,7 +585,7 @@ Hint: <a href="https://ggplot2.tidyverse.org/reference/print.ggplot.html" class=
 <span id="cb30-36"><a href="web-scraping-and-functions.html#cb30-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(my_years)) {</span>
 <span id="cb30-37"><a href="web-scraping-and-functions.html#cb30-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>( <span class="fu">my_line_graph_month</span>(metoc_site_year_mo, my_years[i]) )</span>
 <span id="cb30-38"><a href="web-scraping-and-functions.html#cb30-38" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="576" /><img src="_main_files/figure-html/unnamed-chunk-31-2.png" width="576" /><img src="_main_files/figure-html/unnamed-chunk-31-3.png" width="576" /><img src="_main_files/figure-html/unnamed-chunk-31-4.png" width="576" /><img src="_main_files/figure-html/unnamed-chunk-31-5.png" width="576" /><img src="_main_files/figure-html/unnamed-chunk-31-6.png" width="576" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-31-1.png" width="576" /><img src="analytics-portfolio_files/figure-html/unnamed-chunk-31-2.png" width="576" /><img src="analytics-portfolio_files/figure-html/unnamed-chunk-31-3.png" width="576" /><img src="analytics-portfolio_files/figure-html/unnamed-chunk-31-4.png" width="576" /><img src="analytics-portfolio_files/figure-html/unnamed-chunk-31-5.png" width="576" /><img src="analytics-portfolio_files/figure-html/unnamed-chunk-31-6.png" width="576" /></p>
 <div id="a-better-way" class="section level4 hasAnchor" number="4.2.6.1">
 <h4><span class="header-section-number">4.2.6.1</span> A better way?<a href="web-scraping-and-functions.html#a-better-way" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span style="color: blue;">Producing an individual chart for each year of interest can also be accomplished by using the <code>facet_grid</code> option in <code>ggplot</code>. With this option there is no need to write a loop to produce an individual graph for each year.</span></p>
@@ -608,7 +608,7 @@ Hint: <a href="https://ggplot2.tidyverse.org/reference/print.ggplot.html" class=
 <span id="cb31-17"><a href="web-scraping-and-functions.html#cb31-17" aria-hidden="true" tabindex="-1"></a>      , <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span></span>
 <span id="cb31-18"><a href="web-scraping-and-functions.html#cb31-18" aria-hidden="true" tabindex="-1"></a>      , <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>, <span class="at">angle =</span> <span class="dv">90</span>)</span>
 <span id="cb31-19"><a href="web-scraping-and-functions.html#cb31-19" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="864" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-32-1.png" width="864" /></p>
 </div>
 </div>
 <div id="bonus-question-1-1" class="section level3 hasAnchor" number="4.2.7">
@@ -646,7 +646,7 @@ Hint: <a href="https://ggplot2.tidyverse.org/reference/print.ggplot.html" class=
 <span id="cb32-30"><a href="web-scraping-and-functions.html#cb32-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span></span>
 <span id="cb32-31"><a href="web-scraping-and-functions.html#cb32-31" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle =</span> <span class="dv">90</span>)</span>
 <span id="cb32-32"><a href="web-scraping-and-functions.html#cb32-32" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-33-1.png" width="768" /></p>
 </div>
 <div id="bonus-question-2" class="section level3 hasAnchor" number="4.2.8">
 <h3><span class="header-section-number">4.2.8</span> Bonus Question 2<a href="web-scraping-and-functions.html#bonus-question-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -681,7 +681,7 @@ Hint: <a href="https://ggplot2.tidyverse.org/reference/print.ggplot.html" class=
 <span id="cb33-27"><a href="web-scraping-and-functions.html#cb33-27" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
 <span id="cb33-28"><a href="web-scraping-and-functions.html#cb33-28" aria-hidden="true" tabindex="-1"></a>    , <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)</span>
 <span id="cb33-29"><a href="web-scraping-and-functions.html#cb33-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="768" /></p>
+<p><img src="analytics-portfolio_files/figure-html/unnamed-chunk-34-1.png" width="768" /></p>
 
 </div>
 </div>
