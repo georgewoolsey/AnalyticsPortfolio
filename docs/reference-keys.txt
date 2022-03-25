@@ -104,17 +104,3 @@ develop-models-1
 plot-best-model-1
 bonus
 bonus-2
-beginning-machine-learning
-objective
-data-read
-spatial-autocorrelation-grouping
-model-development
-chl-a-model
-chl-a-model-measuredpredicted-plot
-chl-a-error-metrics
-tss-model
-tss-plot
-tss-evaluation
-assignment-6
-section
-section-1
